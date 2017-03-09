@@ -8,7 +8,7 @@
     "run:server": "node ./build/server/app.js",
     "start:server": "npm run build:server & cross-env NODE_ENV=production npm run run:server",
     "dev:client": "webpack-dev-server --config ./config/webpack.config.dev.js",
-    "build:client": "rimraf ./build/client & webpack --config ./config/webpack.config.prod.js --progress",
+    "build:client": "rimraf ./build/client & cross-env NODE_ENV=production webpack --config ./config/webpack.config.prod.js --progress",
     "start": "npm run build:client & npm run start:server"
   },
   "repository": {
@@ -26,6 +26,7 @@
   "homepage": "https://github.com/pwcong/resume-sys#readme",
   "dependencies": {
     "cross-env": "^3.2.3",
+    "fs-extra": "^2.0.0",
     "kcors": "^1.3.2",
     "koa": "^2.0.1",
     "koa-body": "^2.0.0",
@@ -33,6 +34,8 @@
     "koa-logger": "^2.0.1",
     "koa-router": "^7.0.1",
     "koa-static": "^3.0.0",
+    "log4js": "^1.1.1",
+    "mongoose": "^4.8.6",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.3",

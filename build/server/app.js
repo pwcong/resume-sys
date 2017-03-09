@@ -1,5 +1,13 @@
 'use strict';
 
+var _server = require('../../config/server.config');
+
+var _server2 = _interopRequireDefault(_server);
+
+var _mongoose = require('mongoose');
+
+var _mongoose2 = _interopRequireDefault(_mongoose);
+
 var _koa = require('koa');
 
 var _koa2 = _interopRequireDefault(_koa);
@@ -26,6 +34,23 @@ var _router2 = _interopRequireDefault(_router);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+_mongoose2.default.Promise = Promise;
+
+/**
+ * 连接数据库
+ */
+
+_mongoose2.default.connect(_server2.default.mongodbUrl);
+var db = _mongoose2.default.connection;
+
+db.once('open', function () {
+  console.log("MongoDB has been connected");
+});
+db.on('error', function (err) {
+  console.log("MongoDB connection error: ", err);
+  process.exit(0);
+});
+
 var app = new _koa2.default();
 
 app.use((0, _koaLogger2.default)());
@@ -36,6 +61,6 @@ app.use((0, _koaStatic2.default)('build/client'));
 
 app.use(_router2.default.routes()).use(_router2.default.allowedMethods());
 
-app.listen(3000, function () {
-  console.log('serve has been listening on port 3000');
+app.listen(_server2.default.port, function () {
+  console.log('Server has been listening on 127.0.0.1:' + _server2.default.port);
 });

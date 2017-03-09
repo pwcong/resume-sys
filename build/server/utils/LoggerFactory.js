@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.fataler = exports.errorer = exports.warnner = exports.infoer = exports.debuger = exports.tracer = undefined;
+exports.Fataler = exports.Errorer = exports.Warnner = exports.Infoer = exports.Debuger = exports.Tracer = undefined;
 
 var _fsExtra = require('fs-extra');
 
@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === 'production') {
 	console.log("Log4js has been configurated successfully");
 }
 
-var tracer = exports.tracer = function tracer(logger) {
+var Tracer = exports.Tracer = function Tracer(logger) {
 
 	return function (head, msg, err) {
 
@@ -29,7 +29,7 @@ var tracer = exports.tracer = function tracer(logger) {
 	};
 };
 
-var debuger = exports.debuger = function debuger(logger) {
+var Debuger = exports.Debuger = function Debuger(logger) {
 
 	return function (head, msg, err) {
 
@@ -37,7 +37,7 @@ var debuger = exports.debuger = function debuger(logger) {
 	};
 };
 
-var infoer = exports.infoer = function infoer(logger) {
+var Infoer = exports.Infoer = function Infoer(logger) {
 
 	return function (head, msg, err) {
 
@@ -45,7 +45,7 @@ var infoer = exports.infoer = function infoer(logger) {
 	};
 };
 
-var warnner = exports.warnner = function warnner(logger) {
+var Warnner = exports.Warnner = function Warnner(logger) {
 
 	return function (head, msg, err) {
 
@@ -53,7 +53,7 @@ var warnner = exports.warnner = function warnner(logger) {
 	};
 };
 
-var errorer = exports.errorer = function errorer(logger) {
+var Errorer = exports.Errorer = function Errorer(logger) {
 
 	return function (err) {
 
@@ -61,7 +61,7 @@ var errorer = exports.errorer = function errorer(logger) {
 	};
 };
 
-var fataler = exports.fataler = function fataler(logger) {
+var Fataler = exports.Fataler = function Fataler(logger) {
 
 	return function (fatal) {
 

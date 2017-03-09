@@ -2,18 +2,33 @@ const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
 
+    host: 'localhost',
     port: isProd ? 80 : 4000,
-    mongodb: {
-        uri: 'mongodb://localhost/resumesys',
-        options: {
-            server: {
-                poolSize: 8
-            }
+    api: {
+        login: {
+            url: '/login',
+            method: 'POST'
+        },
+        register: {
+            url: '/register',
+            method: 'POST'
+        },
+        getResume: {
+            url: '/resume/:uid',
+            method: 'GET'
+        },
+        modifyResume: {
+            url: '/resume/modify',
+            method: 'POST'
+        },
+        publishResume: {
+            url: '/resume/publish',
+            method: 'POST'
+        },
+        displayResume: {
+            url: '/display/',
+            method: 'GET'
         }
-    },
-    redis: {
-        host: '127.0.0.1',
-        port: 6379
     }
 
 }

@@ -1,12 +1,20 @@
 'use strict';
 
-var _server = require('../../config/server.config');
-
-var _server2 = _interopRequireDefault(_server);
-
 var _mongoose = require('mongoose');
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
+
+var _mongoose3 = require('../../config/mongoose.config');
+
+var _mongoose4 = _interopRequireDefault(_mongoose3);
+
+var _redis = require('../../config/redis.config');
+
+var _redis2 = _interopRequireDefault(_redis);
+
+var _redis3 = require('redis');
+
+var _redis4 = _interopRequireDefault(_redis3);
 
 var _koa = require('koa');
 
@@ -36,6 +44,10 @@ var _LoggerFactory = require('./utils/LoggerFactory');
 
 var _LoggerFactory2 = _interopRequireDefault(_LoggerFactory);
 
+var _server = require('../../config/server.config');
+
+var _server2 = _interopRequireDefault(_server);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
@@ -44,11 +56,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 global.Promise = require('bluebird');
 
 /**
- * 初始化MongoDB数据库链接
+ * 初始化MongoDB数据库连接
  */
 
+
 _mongoose2.default.Promise = global.Promise;
-_mongoose2.default.connect(_server2.default.mongodb.uri, _server2.default.mongodb.options);
+_mongoose2.default.connect(_mongoose4.default.uri, _mongoose4.default.options);
 var db = _mongoose2.default.connection;
 
 db.once('open', function () {
@@ -59,21 +72,20 @@ db.on('error', function (err) {
   process.exit(0);
 });
 
-// /*
-//  * 初始化Redis数据库连接
-//  */
-// import redisConfig from '../../config/redis.config';
-// import redis from 'redis';
+/**
+ * 初始化Redis数据库连接
+ */
 
-// global.redisClient = redis.createClient(redisConfig);
-// redisClient.on('error', error => {
-// 	console.log('Redis connection error: ' + error);
-// 	process.exit(0);
-// })
-// redisClient.on('connect', () => {
-// 	console.log('Redis has been connected successfully');
-// })
 
+global.redisClient = _redis4.default.createClient(_redis2.default);
+
+redisClient.on('error', function (error) {
+  console.log('Redis connection error: ' + error);
+  process.exit(0);
+});
+redisClient.on('connect', function () {
+  console.log('Redis has been connected successfully');
+});
 
 /**
  * 打开服务器
@@ -84,11 +96,11 @@ var app = new _koa2.default();
 var httpLogger = _LoggerFactory2.default.getLogger('http');
 
 process.env.NODE_ENV === 'production' ? app.use(async function (ctx, next) {
-  httpLogger.info('<-- %s %s ', ctx.method, ctx.url);
+  httpLogger.trace('<-- %s %s ', ctx.method, ctx.url);
   var start = new Date();
   await next();
   var ms = new Date() - start;
-  httpLogger.info('--> %s %s %s %s ', ctx.method, ctx.url, ctx.status, ms + 'ms');
+  httpLogger.trace('--> %s %s %s %s ', ctx.method, ctx.url, ctx.status, ms + 'ms');
 }) : app.use((0, _koaLogger2.default)());
 
 app.use((0, _kcors2.default)());

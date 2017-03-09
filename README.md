@@ -6,6 +6,7 @@
 * React
 * Redux
 * React-Router
+* Flat-UI
 
 后端：
 * Koa2

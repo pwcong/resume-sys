@@ -7,7 +7,7 @@ if(process.env.NODE_ENV === 'production'){
 	console.log("Log4js has been configurated successfully");	
 }
 
-export const tracer = logger => {
+export const Tracer = logger => {
 
 	return (head, msg, err) => {
 
@@ -17,7 +17,7 @@ export const tracer = logger => {
 
 } 
 
-export const debuger = logger => {
+export const Debuger = logger => {
 
 	return (head, msg, err) => {
 
@@ -27,7 +27,7 @@ export const debuger = logger => {
 
 } 
 
-export const infoer = logger => {
+export const Infoer = logger => {
 
 	return (head, msg, err) => {
 
@@ -37,7 +37,7 @@ export const infoer = logger => {
 
 } 
 
-export const warnner = logger => {
+export const Warnner = logger => {
 
 	return (head, msg, err) => {
 
@@ -47,7 +47,7 @@ export const warnner = logger => {
 
 } 
 
-export const errorer = logger => {
+export const Errorer = logger => {
 
 	return err => {
 
@@ -57,7 +57,7 @@ export const errorer = logger => {
 
 } 
 
-export const fataler = logger => {
+export const Fataler = logger => {
 
 	return fatal => {
 

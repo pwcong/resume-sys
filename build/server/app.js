@@ -1,5 +1,9 @@
 'use strict';
 
+var _bluebird = require('bluebird');
+
+var _bluebird2 = _interopRequireDefault(_bluebird);
+
 var _mongoose = require('mongoose');
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
@@ -50,13 +54,13 @@ var _server2 = _interopRequireDefault(_server);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/*
- * 替换为 bluebird 的 Promise，提高性能
- */
-global.Promise = require('bluebird');
+global.Promise = _bluebird2.default;
 
 /**
  * 初始化MongoDB数据库连接
+ */
+/*
+ * 替换为 bluebird 的 Promise，提高性能
  */
 
 

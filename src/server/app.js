@@ -1,8 +1,8 @@
 /*
  * 替换为 bluebird 的 Promise，提高性能
  */
-global.Promise = require('bluebird');
-
+import bluebird from 'bluebird';
+global.Promise = bluebird;
 
 /**
  * 初始化MongoDB数据库连接

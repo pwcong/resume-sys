@@ -3,6 +3,7 @@ import KoaBody from 'koa-body';
 import serverConfig from '../../../config/server.config';
 
 import UserController from '../controller/user';
+import ResumeController from '../controller/resume';
 
 var koaBody = new KoaBody();
 
@@ -10,6 +11,7 @@ const router = new Router();
 
 router
 	.post(serverConfig.api.register.url, koaBody, UserController.register)
-    .post(serverConfig.api.login.url, koaBody, UserController.login);
+    .post(serverConfig.api.login.url, koaBody, UserController.login)
+    .get(serverConfig.api.getResume.url, ResumeController.getResume);
 	
 export default router;

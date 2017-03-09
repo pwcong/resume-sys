@@ -35,9 +35,7 @@ exports.default = {
 
 		return new Promise(function (resolve, reject) {
 
-			if (!user || !user.uid || !user.pwd) {
-				reject((0, _response2.default)(ERROR, 'uid and pwd can not be null'));
-			} else if (user.uid.length < 6) {
+			if (user.uid.length < 6) {
 				reject((0, _response2.default)(ERROR, 'length of uid can not be shorter than 6'));
 			} else {
 
@@ -76,38 +74,33 @@ exports.default = {
 
 		return new Promise(function (resolve, reject) {
 
-			if (!user || !user.uid || !user.pwd) {
-				reject((0, _response2.default)(ERROR, 'uid and pwd can not be null'));
-			} else {
+			infoer('login start', user.uid);
 
-				infoer('login start', user.uid);
+			_user3.default.findOne({
+				uid: user.uid
+			}).then(function (_user) {
 
-				_user3.default.findOne({
-					uid: user.uid
-				}).then(function (_user) {
+				if (_user) {
 
-					if (_user) {
+					if (_user.pwd === user.pwd) {
 
-						if (_user.pwd === user.pwd) {
+						infoer('login success', user.uid);
 
-							infoer('login success', user.uid);
-
-							resolve((0, _response2.default)(OK, 'success', _user));
-						} else {
-
-							infoer('login failed', user.uid, 'wrong pwd');
-
-							reject((0, _response2.default)(ERROR, 'wrong pwd'));
-						}
+						resolve((0, _response2.default)(OK, 'success', _user));
 					} else {
-						infoer('login failed', user.uid, 'user is not existed');
-						reject((0, _response2.default)(ERROR, 'user is not existed'));
+
+						infoer('login failed', user.uid, 'wrong pwd');
+
+						reject((0, _response2.default)(ERROR, 'wrong pwd'));
 					}
-				}).catch(function (err) {
-					errorer(err);
-					reject((0, _response2.default)(ERROR, 'server error'));
-				});
-			}
+				} else {
+					infoer('login failed', user.uid, 'user is not existed');
+					reject((0, _response2.default)(ERROR, 'user is not existed'));
+				}
+			}).catch(function (err) {
+				errorer(err);
+				reject((0, _response2.default)(ERROR, 'server error'));
+			});
 		});
 	}
 };

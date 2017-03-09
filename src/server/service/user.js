@@ -19,10 +19,7 @@ export default {
 
 		return new Promise((resolve, reject) => {
 
-			if( !user || !user.uid || !user.pwd ){
-				reject(response(ERROR, 'uid and pwd can not be null'));
-			}
-			else if(user.uid.length < 6){
+			if(user.uid.length < 6){
 				reject(response(ERROR, 'length of uid can not be shorter than 6'));
 			}
 			else {
@@ -69,46 +66,41 @@ export default {
 
 		return new Promise( (resolve, reject) => {
 
-			if(!user || !user.uid || !user.pwd){
-				reject(response(ERROR, 'uid and pwd can not be null'));
-			}
-			else{
+			infoer('login start', user.uid);
 
-				infoer('login start', user.uid);
+			UserModel
+				.findOne({
+					uid: user.uid
+				})
+				.then( _user => {
+				
+					if(_user){
 
-				UserModel
-					.findOne({
-						uid: user.uid
-					})
-					.then( _user => {
-					
-						if(_user){
+						if(_user.pwd === user.pwd){
 
-							if(_user.pwd === user.pwd){
+							infoer('login success', user.uid);
 
-								infoer('login success', user.uid);
+							resolve(response(OK,'success', _user));		
 
-								resolve(response(OK,'success', _user));		
-
-
-							}else{
-
-								infoer('login failed', user.uid, 'wrong pwd');
-
-								reject(response(ERROR, 'wrong pwd'));
-
-							}
 
 						}else{
-							infoer('login failed', user.uid, 'user is not existed');
-							reject(response(ERROR, 'user is not existed'));						
+
+							infoer('login failed', user.uid, 'wrong pwd');
+
+							reject(response(ERROR, 'wrong pwd'));
+
 						}
-					})
-					.catch( err => {
-						errorer(err);
-						reject(response(ERROR, 'server error'));
-					});
-			}
+
+					}else{
+						infoer('login failed', user.uid, 'user is not existed');
+						reject(response(ERROR, 'user is not existed'));						
+					}
+				})
+				.catch( err => {
+					errorer(err);
+					reject(response(ERROR, 'server error'));
+				});
+			
 
 		});
 

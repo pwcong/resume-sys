@@ -21,6 +21,9 @@ export default {
             let uuid = uuidV1();
 
             ctx.body = Object.assign({}, res, {
+                result: {
+                    uid: res.result.uid,
+                },
                 token: uuid
             });
 

@@ -1,10 +1,13 @@
 import React from 'react';
 import style from './style/index.css';
 
+import { imgUrl, translated } from '../config/const';
+
 import LoginForm from '../component/LoginForm';
 import RegisterForm from '../component/RegisterForm';
-import { imgUrl } from '../config/const';
-import { browser } from '../config';
+import Message, { TYPE } from '../component/Message';
+
+
 
 export default class App extends React.Component{
 
@@ -12,12 +15,16 @@ export default class App extends React.Component{
         super(props);
 
         this.state = {
-            isLogin: true
+            isLogin: true,
+            hideMessage: true,
+            messageContent: '',
+            messageType: TYPE.default
         };
 
         this.handleToLogin = this.handleToLogin.bind(this);
         this.handleToRegister = this.handleToRegister.bind(this);
-
+        this.handleOnLogin = this.handleOnLogin.bind(this);
+        this.handleOnRegister = this.handleOnRegister.bind(this);
     }
 
     handleToLogin(){
@@ -32,6 +39,14 @@ export default class App extends React.Component{
         });
     }   
 
+    handleOnLogin(user){
+
+    }
+
+    handleOnRegister(user){
+
+    }
+
 	render(){
 
 
@@ -39,13 +54,17 @@ export default class App extends React.Component{
 
 			<div className={style.root} style={{backgroundImage: 'url(' + imgUrl.bg + ')'}}>
 
+                <Message 
+                    content={this.state.messageContent} 
+                    type={this.props.messageType} 
+                    hide={this.state.hideMessage}/>
+                
                 <div style={{
                     textAlign: 'center',
                     width: '100%',
-                    color: 'white',
-                    
-                }}>
-                    <h2>Resume Sys</h2>
+                    color: '#ddd',
+                    }}>
+                    <h2>{translated.appName}</h2>
                 </div>
 
                 {
@@ -53,11 +72,13 @@ export default class App extends React.Component{
                     <LoginForm 
                         hide={!this.state.isLogin}
                         onToRegister={this.handleToRegister}
+                        onLogin={this.handleOnLogin}
                         /> 
                     : 
                     <RegisterForm 
                         hide={this.state.isLogin}
                         onToLogin={this.handleToLogin}
+                        onRegister={this.handleOnRegister}
                         />
                 }
 

@@ -19,6 +19,7 @@ export const imgUrl = {
 
 export const string = {
 
+    
     username: {
         'zh-CN': '用户名',
         'en': 'Username'
@@ -43,7 +44,7 @@ export const string = {
 }
 
 export const translated = {
-
+    appName: 'Resume Sys',
     username: string.username[language],
     password: string.password[language],
     login: string.login[language],

@@ -1,0 +1,30 @@
+:local .root{
+    position: fixed;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+
+    display: flex;
+    justify-content: center;
+
+    transition: top 0.4s;
+
+
+}
+
+:local .hide{
+    top: -100px;
+}
+
+:local .content{
+
+    color: white;
+    border-radius: 0px 0px 4px 4px;
+    
+    padding: 8px 16px 8px 16px;
+
+}
+
+:local .content span{
+    margin: 8px;
+}

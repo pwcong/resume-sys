@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build:server": "rimraf ./build/server & babel ./src/server --out-dir ./build/server",
-    "run:server": "node ./build/server/app.js",
-    "start:server": "npm run build:server & cross-env NODE_ENV=production npm run run:server",
+    "dev:server": "npm run build:server & node ./build/server/app.js",
+    "start:server": "npm run build:server & cross-env NODE_ENV=production node ./build/server/app.js",
     "dev:client": "webpack-dev-server --config ./config/webpack.config.dev.js --history-api-fallback",
     "build:client": "rimraf ./build/client & cross-env NODE_ENV=production webpack --config ./config/webpack.config.prod.js --progress",
     "start": "npm run build:client & npm run start:server"

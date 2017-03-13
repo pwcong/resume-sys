@@ -1,0 +1,10 @@
+:local .root{
+    width: 300px;
+    border: 1px white solid;
+    padding: 24px;
+    border-radius: 4px;
+}
+
+:local .root label{
+    color: white;
+}

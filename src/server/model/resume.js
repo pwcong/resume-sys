@@ -15,7 +15,7 @@ const educationSchema = mongoose.Schema({
     name: String,       // 学校名字 
     startDate: Date,    // 就读日期
     endDate: Date,      // 毕业日期
-    degree: String,       // 学位 
+    degree: String,     // 学位 
     major: String,      // 专业
     summary: String     // 简介
 
@@ -26,14 +26,14 @@ const workSchema = mongoose.Schema({
     name: String,       // 单位名字 
     startDate: Date,    // 工作日期
     endDate: Date,      // 辞职日期
-    job: String,       // 职位
+    job: String,        // 职位
     summary: String     // 简介
 
 });
 
 const skillSchema = mongoose.Schema({
 
-    name: String,   // 技能名称
+    name: String,       // 技能名称
     level: {
         type: Number,   // 熟练度，0 - 100
         default: 0
@@ -53,7 +53,7 @@ const schema = mongoose.Schema({
         phone: String,      // 手机
         email: String,      // 邮箱
         blog: String,       // 博客
-        github: String,      // Github 
+        github: String,     // Github 
         intro: String,      // 一句话介绍
     },
     experience: {   // 项目经验

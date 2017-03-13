@@ -80,6 +80,8 @@ db.on('error', function (err) {
  * 初始化Redis数据库连接
  */
 
+_bluebird2.default.promisifyAll(_redis4.default.RedisClient.prototype);
+_bluebird2.default.promisifyAll(_redis4.default.Multi.prototype);
 
 global.redisClient = _redis4.default.createClient(_redis2.default);
 

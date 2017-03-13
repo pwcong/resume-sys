@@ -28,6 +28,8 @@ db.on('error', err => {
  */
 import redisConfig from '../../config/redis.config';
 import redis from 'redis';
+bluebird.promisifyAll(redis.RedisClient.prototype);
+bluebird.promisifyAll(redis.Multi.prototype);
 
 global.redisClient = redis.createClient(redisConfig);
 

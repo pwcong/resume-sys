@@ -58,6 +58,65 @@ export default {
 		});
 
 	},
+    modify(resume){
+
+        return new Promise((resolve, reject) => {
+
+            infoer('modify start', resume.uid);
+
+            ResumeModel.findOne({
+                uid: resume.uid
+            }).then(_resume =>{
+
+                if(!_resume){
+
+                    infoer('modify failed', resume.uid);
+                    reject(response(ERROR, 'resume is not existed'));
+
+                }else{
+
+                    ResumeModel.update(
+                        {
+                            uid: resume.uid
+                        },
+                        {
+                            info: resume.info,
+                            experience: resume.experience,
+                            education: resume.education,
+                            work: resume.work,
+                            hope: resume.hope,
+                            skill: resume.skill
+                        }
+                    ).then( res => {
+
+                        if(!res){
+
+                            infoer('modify failed', resume.uid);
+                            reject(response(ERROR, 'resume is not existed'));
+                        }else{
+
+                            infoer('modify success', resume.uid);
+                            resolve(response(OK, 'success', res));
+
+                        }
+
+
+                    }).catch(err => {
+                        errorer(err);
+                        reject(response(ERROR, 'server error'));
+                    });
+
+                }
+
+
+            }).catch(err => {
+                errorer(err);
+                reject(response(ERROR, 'server error'));
+            });
+
+        });
+
+    }
 
 
 

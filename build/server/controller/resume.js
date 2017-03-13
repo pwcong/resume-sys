@@ -24,11 +24,46 @@ exports.default = {
                 if (!uid) {
                         ctx.body = 'wrong query param';
                         ctx.status = ERROR;
+                        return;
                 }
 
                 try {
 
                         var res = await _resume2.default.get(uid);
+
+                        ctx.body = res;
+                } catch (rej) {
+
+                        ctx.body = rej;
+                }
+        },
+        modifyResume: async function modifyResume(ctx, next) {
+
+                var body = ctx.request.body;
+
+                if (!body.token || !body.resume || !body.resume.uid) {
+                        ctx.body = 'wrong request body';
+                        ctx.status = ERROR;
+                        return;
+                }
+
+                try {
+                        var token = await redisClient.getAsync(body.resume.uid);
+
+                        if (body.token !== token) {
+                                ctx.body = 'token validate failed';
+                                ctx.status = ERROR;
+                                return;
+                        }
+                } catch (err) {
+                        ctx.body = 'unknown error';
+                        ctx.status = ERROR;
+                        return;
+                }
+
+                try {
+
+                        var res = await _resume2.default.modify(body.resume);
 
                         ctx.body = res;
                 } catch (rej) {

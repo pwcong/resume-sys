@@ -12,6 +12,7 @@ const router = new Router();
 router
 	.post(serverConfig.api.register.url, koaBody, UserController.register)
     .post(serverConfig.api.login.url, koaBody, UserController.login)
-    .get(serverConfig.api.getResume.url, ResumeController.getResume);
-	
+    .get(serverConfig.api.getResume.url, ResumeController.getResume)
+	.post(serverConfig.api.modifyResume.url, koaBody, ResumeController.modifyResume);
+
 export default router;

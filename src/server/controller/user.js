@@ -53,7 +53,10 @@ export default {
             let uuid = uuidV1();
 
             ctx.body = Object.assign({}, res, {
-                token: uuid
+                token: uuid,
+                result: {
+                    uid: res.result.uid
+                }
             });
 
             redisClient.set(res.result.uid, uuid);

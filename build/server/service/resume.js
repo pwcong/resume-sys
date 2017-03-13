@@ -64,5 +64,52 @@ exports.default = {
                 reject((0, _response2.default)(ERROR, 'server error'));
             });
         });
+    },
+    modify: function modify(resume) {
+
+        return new Promise(function (resolve, reject) {
+
+            infoer('modify start', resume.uid);
+
+            _resume3.default.findOne({
+                uid: resume.uid
+            }).then(function (_resume) {
+
+                if (!_resume) {
+
+                    infoer('modify failed', resume.uid);
+                    reject((0, _response2.default)(ERROR, 'resume is not existed'));
+                } else {
+
+                    _resume3.default.update({
+                        uid: resume.uid
+                    }, {
+                        info: resume.info,
+                        experience: resume.experience,
+                        education: resume.education,
+                        work: resume.work,
+                        hope: resume.hope,
+                        skill: resume.skill
+                    }).then(function (res) {
+
+                        if (!res) {
+
+                            infoer('modify failed', resume.uid);
+                            reject((0, _response2.default)(ERROR, 'resume is not existed'));
+                        } else {
+
+                            infoer('modify success', resume.uid);
+                            resolve((0, _response2.default)(OK, 'success', res));
+                        }
+                    }).catch(function (err) {
+                        errorer(err);
+                        reject((0, _response2.default)(ERROR, 'server error'));
+                    });
+                }
+            }).catch(function (err) {
+                errorer(err);
+                reject((0, _response2.default)(ERROR, 'server error'));
+            });
+        });
     }
 };

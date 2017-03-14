@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './style/index.css';
 import { connect } from 'react-redux';
-
+import { hashHistory } from 'react-router';
 
 import { imgUrl, translated } from '../config/const';
 
@@ -65,6 +65,8 @@ import {
                     isLogining: false,
                     hideMessage: true,
                 });
+
+                hashHistory.push('/home');
             },
             err => {
                 ctx.setState({
@@ -104,6 +106,8 @@ import {
                     isLogining: false,
                     hideMessage: true,
                 });
+
+                hashHistory.push('/home');
             },
             err => {
                 ctx.setState({

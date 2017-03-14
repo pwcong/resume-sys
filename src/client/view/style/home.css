@@ -1,3 +1,14 @@
 :local .root{
     width: 100%;
 }
+
+:local .banner{
+    height: 128px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+
+:local .info{
+    border: 1px red solid;
+}

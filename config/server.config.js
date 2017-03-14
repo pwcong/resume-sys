@@ -15,6 +15,7 @@ module.exports = {
         },
         getResume: {
             url: '/resume/:uid',
+            path: '/resume/',
             method: 'GET'
         },
         modifyResume: {

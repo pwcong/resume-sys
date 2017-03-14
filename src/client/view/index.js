@@ -110,18 +110,12 @@ import {
                 hashHistory.push('/home');
             },
             err => {
+
+                showMessage(ctx, err, TYPE.danger, 2000);
                 ctx.setState({
-                    isLogining: false,
-                    hideMessage: false,
-                    messageContent: err,
-                    messageType: TYPE.danger
+                    isLogining: false
                 });
 
-                setTimeout(() => {
-                    ctx.setState({
-                        hideMessage: true,
-                    });
-                },2000);
             }
         ));
     }
@@ -169,6 +163,19 @@ import {
 	}
 
 
+}
+
+function showMessage(ctx, content, type, time){
+	ctx.setState({
+		hideMessage: false,
+		messageContent: content,
+		messageType: type
+	});
+	setTimeout(() => {
+		ctx.setState({
+			hideMessage: true
+		});
+	}, time);
 }
 
 function select(state){

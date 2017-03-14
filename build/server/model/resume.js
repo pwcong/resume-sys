@@ -41,6 +41,13 @@ var workSchema = _mongoose2.default.Schema({
 
 });
 
+var hopeSchema = _mongoose2.default.Schema({
+    job: String, // 职位  
+    type: String, // 实习/全职/兼职
+    city: String, // 城市
+    salary: String // 薪资
+});
+
 var skillSchema = _mongoose2.default.Schema({
 
     name: String, // 技能名称
@@ -54,17 +61,42 @@ var skillSchema = _mongoose2.default.Schema({
 var schema = _mongoose2.default.Schema({
     uid: String, // 唯一账号
     info: { // 个人信息
-        name: String, // 姓名
+        avatar: {
+            type: String,
+            default: ''
+        }, // 头像
+        name: {
+            type: String,
+            default: ''
+        }, // 姓名
         sex: { // 性别
             type: Number,
             default: 0
         },
-        birthday: Date, // 生日
-        phone: String, // 手机
-        email: String, // 邮箱
-        blog: String, // 博客
-        github: String, // Github 
-        intro: String },
+        birthday: {
+            type: Date,
+            default: new Date()
+        }, // 生日
+        phone: {
+            type: String,
+            default: ''
+        }, // 手机
+        email: {
+            type: String,
+            default: ''
+        }, // 邮箱
+        blog: {
+            type: String,
+            default: ''
+        }, // 博客
+        github: {
+            type: String,
+            default: ''
+        }, // Github 
+        intro: {
+            type: String,
+            default: ''
+        } },
     experience: { // 项目经验
         display: {
             type: Boolean,
@@ -91,10 +123,15 @@ var schema = _mongoose2.default.Schema({
             type: Boolean,
             default: false
         },
-        job: String, // 职位  
-        type: String, // 实习/全职/兼职
-        city: String, // 城市
-        salary: String // 薪资
+        details: {
+            type: hopeSchema,
+            default: {
+                job: '',
+                type: '',
+                city: '',
+                salary: ''
+            }
+        }
 
     },
     skill: { // 技能评价

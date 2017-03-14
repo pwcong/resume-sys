@@ -7,6 +7,7 @@ import style from './style/home.css';
 
 import Message, { TYPE } from '../component/Message';
 import Modal from '../component/Modal';
+import InputDisplayer from '../component/InputDisplayer';
 
 import { imgUrl, translated } from '../config/const';
 
@@ -145,9 +146,14 @@ class Home extends React.Component{
 							</div>
 						</div>
 					</div>
-					<div className={style.row} style={{marginTop: '32px'}}></div>
+					<div className={style.row} style={{marginTop: '48px'}}></div>
 					<div className={style.row}>
-						<h4>{ this.state.resume.info.name }</h4>
+						{/*<h4>{ this.state.resume.info.name }</h4>*/}
+						<InputDisplayer 
+							fontSize="24px"
+							defaultValue={this.state.resume.info.name}
+							icon="fa-user-o"
+							/>
 					</div>
 				</div>
 			</div>

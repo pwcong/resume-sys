@@ -1,0 +1,36 @@
+:local .root{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+:local .root > span{
+    margin: 8px;
+}
+
+:local .root > div{
+    display: flex;
+    align-items: center;
+}
+
+:local .root > div > span{
+
+    cursor: pointer;
+    margin: 8px 2px 8px 2px;
+
+    transition: color 0.3s, opacity 0.3s;
+
+}
+
+:local .btn-edit{
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+:local .root:hover .btn-edit{
+    opacity: 1;
+}
+
+:local .root > div > span:hover{
+    color: #1abc9c;
+}

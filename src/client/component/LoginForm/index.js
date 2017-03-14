@@ -75,10 +75,12 @@ class LoginForm extends Component {
                     </div>
                     <button 
                         type="button" 
-                        className="btn btn-block btn-large btn-info"
+                        className={"btn btn-block btn-large btn-info " 
+                            + (this.props.loading ? "disabled" : '')
+                        }
                         onClick={this.handleLogin}
                         >
-                        {translated.login}
+                        { this.props.loading ? translated.logining : translated.login}
                     </button>
                     <button 
                         type="button" 
@@ -95,13 +97,14 @@ class LoginForm extends Component {
 
 LoginForm.propTypes = {
     hide: PropTypes.bool,
+    loading: PropTypes.bool,
     onLogin: PropTypes.func,
     onToRegister: PropTypes.func
-
 };
 
 LoginForm.defaultProps = {
     hide: false,
+    loading: false,
     onLogin(user){
         console.log(user);
     },

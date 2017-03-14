@@ -19,12 +19,12 @@ export default {
 
 		return new Promise((resolve, reject) => {
 
+			infoer('register start', user.uid);
 			if(user.uid.length < 6){
 				reject(response(ERROR, 'length of uid can not be shorter than 6'));
 			}
 			else {
 				
-				infoer('register start', user.uid);
 
 				UserModel
 					.findOne({

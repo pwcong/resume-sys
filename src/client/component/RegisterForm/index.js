@@ -75,10 +75,12 @@ class RegisterForm extends Component {
                     </div>
                     <button 
                         type="button" 
-                        className="btn btn-block btn-large btn-primary"
+                        className={"btn btn-block btn-large btn-primary " 
+                            + (this.props.loading ? 'disabled' : '')
+                        }
                         onClick={this.handleRegister}
                         >
-                        {translated.submit}
+                        { this.props.loading ? translated.registering : translated.submit}
                     </button>
                     <button 
                         type="button" 
@@ -95,6 +97,7 @@ class RegisterForm extends Component {
 
 RegisterForm.propTypes = {
     hide: PropTypes.bool,
+    loading: PropTypes.bool,
     onRegister: PropTypes.func,
     onToLogin: PropTypes.func
 
@@ -102,6 +105,7 @@ RegisterForm.propTypes = {
 
 RegisterForm.defaultProps = {
     hide: false,
+    loading: false,
     onRegister(user){
         console.log(user);
     },

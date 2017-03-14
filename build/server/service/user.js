@@ -35,11 +35,10 @@ exports.default = {
 
 		return new Promise(function (resolve, reject) {
 
+			infoer('register start', user.uid);
 			if (user.uid.length < 6) {
 				reject((0, _response2.default)(ERROR, 'length of uid can not be shorter than 6'));
 			} else {
-
-				infoer('register start', user.uid);
 
 				_user3.default.findOne({
 					uid: user.uid

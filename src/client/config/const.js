@@ -32,9 +32,17 @@ export const string = {
         'zh-CN': '登陆',
         'en': 'Login'
     },
+    logining: {
+        'zh-CN': '正在登陆中',
+        'en': 'Logining'
+    },
     register: {
         'zh-CN': '注册',
         'en': 'Register'
+    },
+    registering: {
+        'zh-CN': '正在注册中',
+        'en': 'Registering'
     },
     submit: {
         'zh-CN': '提交',
@@ -48,7 +56,9 @@ export const translated = {
     username: string.username[language],
     password: string.password[language],
     login: string.login[language],
+    logining: string.logining[language],
     register: string.register[language],
+    registering: string.registering[language],
     submit: string.submit[language]
 
 }

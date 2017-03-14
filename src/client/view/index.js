@@ -1,5 +1,7 @@
 import React from 'react';
 import style from './style/index.css';
+import { connect } from 'react-redux';
+
 
 import { imgUrl, translated } from '../config/const';
 
@@ -7,15 +9,20 @@ import LoginForm from '../component/LoginForm';
 import RegisterForm from '../component/RegisterForm';
 import Message, { TYPE } from '../component/Message';
 
+import {
+    toLogin,
+    toRegister
+} from '../actions/userstate';
 
-
-export default class App extends React.Component{
+ class Index extends React.Component{
 
     constructor(props){
         super(props);
 
         this.state = {
             isLogin: true,
+            isLogining: false,
+            isRegistering: false,
             hideMessage: true,
             messageContent: '',
             messageType: TYPE.default
@@ -40,11 +47,79 @@ export default class App extends React.Component{
     }   
 
     handleOnLogin(user){
+        let ctx = this;
+
+        ctx.props.dispatch(toLogin(
+            {
+                uid: user.uid,
+                pwd: user.pwd
+            },
+            () => {
+                ctx.setState({
+                    isLogining: true,
+                    hideMessage: true,
+                });
+            },
+            () => {
+                ctx.setState({
+                    isLogining: false,
+                    hideMessage: true,
+                });
+            },
+            err => {
+                ctx.setState({
+                    isLogining: false,
+                    hideMessage: false,
+                    messageContent: err,
+                    messageType: TYPE.danger
+                });
+
+                setTimeout(() => {
+                    ctx.setState({
+                        hideMessage: true,
+                    });
+                },2000);
+            }
+        ));
+        
 
     }
 
     handleOnRegister(user){
+        let ctx = this;
 
+        ctx.props.dispatch(toRegister(
+            {
+                uid: user.uid,
+                pwd: user.pwd
+            },
+            () => {
+                ctx.setState({
+                    isLogining: true,
+                    hideMessage: true,
+                });
+            },
+            () => {
+                ctx.setState({
+                    isLogining: false,
+                    hideMessage: true,
+                });
+            },
+            err => {
+                ctx.setState({
+                    isLogining: false,
+                    hideMessage: false,
+                    messageContent: err,
+                    messageType: TYPE.danger
+                });
+
+                setTimeout(() => {
+                    ctx.setState({
+                        hideMessage: true,
+                    });
+                },2000);
+            }
+        ));
     }
 
 	render(){
@@ -70,12 +145,14 @@ export default class App extends React.Component{
                 {
                     this.state.isLogin ? 
                     <LoginForm 
+                        loading={this.state.isLogining}
                         hide={!this.state.isLogin}
                         onToRegister={this.handleToRegister}
                         onLogin={this.handleOnLogin}
                         /> 
                     : 
                     <RegisterForm 
+                        loading={this.state.isRegistering}
                         hide={this.state.isLogin}
                         onToLogin={this.handleToLogin}
                         onRegister={this.handleOnRegister}
@@ -89,3 +166,11 @@ export default class App extends React.Component{
 
 
 }
+
+function select(state){
+    return({
+        userstate: state.userstate
+    });
+}
+
+export default connect(select)(Index);

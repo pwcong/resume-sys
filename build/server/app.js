@@ -54,17 +54,13 @@ var _server2 = _interopRequireDefault(_server);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-global.Promise = _bluebird2.default;
-
 /**
  * 初始化MongoDB数据库连接
  */
-/*
- * 替换为 bluebird 的 Promise，提高性能
- */
+_mongoose2.default.Promise = global.Promise; /*
+                                              * 替换为 bluebird 的 Promise，提高性能
+                                              */
 
-
-_mongoose2.default.Promise = global.Promise;
 _mongoose2.default.connect(_mongoose4.default.uri, _mongoose4.default.options);
 var db = _mongoose2.default.connection;
 

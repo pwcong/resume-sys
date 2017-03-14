@@ -1,0 +1,88 @@
+{
+	"token": "c89f00f0-08a1-11e7-9033-85fde5666d21",
+	"resume": {
+		"uid":"pwcong",
+		"info": {
+			"blog":"http://pwcong.me",
+			"intro":"I'm Pwcong.",
+			"name":"彭伟聪",
+			"sex": 1,
+			"avatar":"http://p1.bqimg.com/567571/8ccfac629af635e1.jpg",
+			"birthday": "1996-02-01T00:00:00.789Z",
+			"phone":"13714338118",
+			"github":"github.com/pwcong",
+			"email":"pwcong@foxmail.com"
+		},
+		"experience": {
+			"display": true,
+			"list":[
+				{
+					"title":"ToChat",
+					"startDate":"2017-02",
+					"endDate":"2017-03",
+					"role":"Developer",
+					"summary":"ToChat"
+				},
+				{
+					"title":"UserSys",
+					"startDate":"2017-01",
+					"endDate":"2017-02",
+					"role":"Developer",
+					"summary":"UserSys"
+				}
+			]
+		},
+		"education": {
+			"display": true,
+			"list": [
+				{
+					"name":"GDPU",
+					"startDate":"2014-09",
+					"endDate":"2018-06",
+					"degree":"bachelor",
+					"major":"DMT",
+					"summary":"A major like junk."
+				}
+			]
+		},
+		"work": {
+			"display": true,
+			"list": [
+                {
+                    "name":"xxx",
+                    "startDate":"2017-01",
+                    "endDate":"2017-03",
+                    "job":"Front-End Engineer",
+                    "summary":"xxx"
+                }
+
+			]
+		},
+		"hope": {
+			"display": true,
+			"details": {
+				"job":"Front-End Engineer",
+				"type":"Full-time",
+				"city":"Shenzhen",
+				"salary":"6000-10000"
+			}
+		},
+		"skill": {
+			"display": true,
+			"list": [
+				{
+					"name":"HTML5/CSS",
+					"level":80
+				},
+				{
+					"name":"ES6",
+					"level":60
+				},
+				{
+					"name":"React",
+					"level":75
+				}
+			]
+		}
+	}
+}

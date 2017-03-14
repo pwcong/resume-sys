@@ -1,0 +1,20 @@
+:local .root{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: -999;
+    transition: background-color 0.4s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+:local .root-active{
+
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+}

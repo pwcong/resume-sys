@@ -29,7 +29,7 @@ export function toGetResume(uid, onStart, onSuccess, onFailed){
             if(json.status === OK){
 
                 dispatch(getResume(json.result));
-                onSuccess();
+                onSuccess(json.result);
 
             }else{
                 onFailed(json.message);

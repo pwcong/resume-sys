@@ -3,7 +3,7 @@
     width: 100%;
     left: 0px;
     top: 0px;
-
+    z-index: 100;
     display: flex;
     justify-content: center;
 

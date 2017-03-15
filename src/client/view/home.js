@@ -108,19 +108,22 @@ class Home extends React.Component{
 	componentDidMount(){
 		let ctx = this;
 
-		ctx.props.dispatch(toGetResume(
-			ctx.props.userstate.uid,
-			() => {},
-			resume => {
-				showMessage(ctx, translated.getResumeSuccessfully, TYPE.success, 2000);
-				ctx.setState({
-					resume
-				})
-			},
-			err => {
-				showMessage(ctx, translated.getResumeFailed, TYPE.danger, 2000);
-			}
-		));
+		if(ctx.props.userstate.uid){
+
+			ctx.props.dispatch(toGetResume(
+				ctx.props.userstate.uid,
+				() => {},
+				resume => {
+					showMessage(ctx, translated.getResumeSuccessfully, TYPE.success, 2000);
+					ctx.setState({
+						resume
+					})
+				},
+				err => {
+					showMessage(ctx, translated.getResumeFailed, TYPE.danger, 2000);
+				}
+			));
+		}
 
 	}
 
@@ -180,7 +183,6 @@ class Home extends React.Component{
 					</div>
 					<div className={style.row} style={{marginTop: '48px'}}></div>
 					<div className={style.row}>
-						{/*<h4>{ this.state.resume.info.name }</h4>*/}
 						<InputDisplayer
 							inputWidth="200px"
 							left="12px" 
@@ -200,20 +202,39 @@ class Home extends React.Component{
 
 					<div className={style.row}>
 						<InputDisplayer
+							id="datepicker-birthday"
+							isDatePicker={true}
+							inputWidth="110px"
+							icon="fa-birthday-cake"
+							defaultValue={this.state.resume.info.birthday}
+							handleDefaultValue={(value) => {
+								let date = new Date(value);
+								console.log(date)
+								return date.getFullYear() + '-' + (handleMonthOrDate(date.getMonth()+1)) + '-' + handleMonthOrDate(date.getDate());
+							}}/>
+						<InputDisplayer
+							inputWidth="100px"
+							icon="fa-map-marker"
+							defaultValue={this.state.resume.info.city}/>
+					</div>
+
+					<div className={style.row}>
+						<InputDisplayer
 							icon="fa-phone"
 							defaultValue={this.state.resume.info.phone}/>
 						<InputDisplayer
 							icon="fa-envelope"
 							defaultValue={this.state.resume.info.email}/>
+					</div>
+
+					<div className={style.row}>
+
 						<InputDisplayer
 							icon="fa-github"
 							defaultValue={this.state.resume.info.github}/>
 						<InputDisplayer
 							icon="fa-home"
 							defaultValue={this.state.resume.info.blog}/>
-						<InputDisplayer
-							icon="fa-map-marker"
-							defaultValue={this.state.resume.info.city}/>
 					</div>
 				</div>
 			</div>
@@ -235,6 +256,10 @@ function handleSexNum(sex){
 			return translated.unknown;
 
 	}
+}
+
+function handleMonthOrDate(v){
+	return v.length > 1 ? v : '0'+v;
 }
 
 function showMessage(ctx, content, type, time){

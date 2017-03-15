@@ -45,9 +45,19 @@ class InputDisplayer extends Component {
 
         }
 
-        
-
     }
+
+    componentDidUpdate(){
+
+        let ctx = this;
+
+        if(ctx.props.isDatePicker){
+            $('#' + ctx.props.id).datepicker({
+                format: ctx.props.dateFormat
+            });
+        }
+    }
+
 
     render() {
         return (
@@ -66,11 +76,12 @@ class InputDisplayer extends Component {
                     this.state.isEditing ? 
                         <div>
                             <input 
+                                id={this.props.id}
                                 placeholder={this.props.placeholder}
                                 className="form-control" 
                                 type="text" 
                                 ref="input" 
-                                defaultValue={this.props.defaultValue}
+                                defaultValue={this.props.handleDefaultValue(this.props.defaultValue)}
                                 style={{
                                     width: this.props.inputWidth,
                                     fontSize: this.props.fontSize
@@ -84,7 +95,7 @@ class InputDisplayer extends Component {
                                 style={{
                                     fontSize: this.props.fontSize
                                 }}>
-                                {this.props.defaultValue}
+                                {this.props.handleDefaultValue(this.props.defaultValue)}
                             </div>
                             <span className={"fa fa-edit " + style['btn-edit'] } onClick={this.handleStartEdit}></span>
                         </div>
@@ -95,24 +106,34 @@ class InputDisplayer extends Component {
 }
 
 InputDisplayer.propTypes = {
+    id: PropTypes.string,
+    isDatePicker: PropTypes.bool,
+    dateFormat: PropTypes.string,
     placeholder: PropTypes.string,
     inputWidth: PropTypes.string,
     left: PropTypes.string,
     icon: PropTypes.string,
     isEditing: PropTypes.bool,
     defaultValue: PropTypes.string,
+    handleDefaultValue: PropTypes.func,
     fontSize: PropTypes.string,
     onCommit: PropTypes.func,
-    onCheck: PropTypes.func
+    onCheck: PropTypes.func,
 };
 
 InputDisplayer.defaultProps = {
+    id: '',
+    isDatePicker: false,
+    dateFormat: 'yyyy-mm-dd',
     placeholder: '',
     inputWidth: '',
     left: '0px',
     icon: '',
     isEditing: false,
     defaultValue: '',
+    handleDefaultValue(value){
+        return value;
+    },
     fontSize: '14px',
     onCommit(value){
         console.log(value);

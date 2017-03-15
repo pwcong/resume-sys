@@ -7,6 +7,7 @@ export const INITIAL_STATE_RESUME = {
     info: {
         intro: '',
         github: '',
+        city: '',
         blog: '',
         email: '',
         phone: '',

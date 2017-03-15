@@ -1,4 +1,6 @@
 :local .root{
+    border: 1px red solid;
+    position: relative;
     display: flex;
     flex-flow: row wrap;
     align-items: center;
@@ -11,12 +13,13 @@
 :local .root > div{
     display: flex;
     align-items: center;
+    flex-flow: row nowrap;
 }
 
 :local .root > div > span{
 
     cursor: pointer;
-    margin: 8px 2px 8px 2px;
+    margin: 8px 4px 8px 4px;
 
     transition: color 0.3s, opacity 0.3s;
 

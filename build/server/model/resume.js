@@ -73,6 +73,10 @@ var schema = _mongoose2.default.Schema({
             type: Number,
             default: 0
         },
+        city: {
+            type: String,
+            default: ''
+        },
         birthday: {
             type: Date,
             default: new Date()

@@ -35,6 +35,8 @@ class Home extends React.Component{
 		this.handleShowEditAvatarModal = this.handleShowEditAvatarModal.bind(this);
 		this.handleHideEditAvatarModal = this.handleHideEditAvatarModal.bind(this);
 		this.handleEditAvatar = this.handleEditAvatar.bind(this);
+		this.handleEditName = this.handleEditName.bind(this);
+		this.handleEditIntro = this.handleEditIntro.bind(this);
 	}
 
 	handleShowEditAvatarModal(){
@@ -63,6 +65,36 @@ class Home extends React.Component{
 
 		});
 
+	}
+	
+	handleEditName(value){
+
+		let ctx = this;
+
+		ctx.setState({
+
+			resume: Object.assign({}, ctx.state.resume, {
+				info: Object.assign({}, ctx.state.resume.info, {
+					name: value
+				})
+			})
+
+		});
+
+	}
+
+	handleEditIntro(value){
+		let ctx = this;
+
+		ctx.setState({
+
+			resume: Object.assign({}, ctx.state.resume, {
+				info: Object.assign({}, ctx.state.resume.info, {
+					intro: value
+				})
+			})
+
+		});
 	}
 
 	componentWillMount(){
@@ -99,21 +131,21 @@ class Home extends React.Component{
 				<Modal hide={this.state.hideModal}>
 					<form className={style['modal-edit-avatar']}>
 						<div className="form-group">
-							<input type="text" ref="inputAvatar" className="form-control" placeholder="Avatar Url"/>
+							<input type="text" ref="inputAvatar" className="form-control" placeholder={translated.avatarUrl}/>
 						</div>
 						<button 
 							type="button" 
 							className="btn btn-block btn-large btn-info"
 							onClick={this.handleEditAvatar}
 							>
-							确定
+							{translated.check}
 						</button>
 						<button 
 							type="button" 
 							className="btn btn-block btn-large"
 							onClick={this.handleHideEditAvatarModal}
 							>
-							取消
+							{translated.cancel}
 						</button>
 					</form>
 					
@@ -149,11 +181,39 @@ class Home extends React.Component{
 					<div className={style.row} style={{marginTop: '48px'}}></div>
 					<div className={style.row}>
 						{/*<h4>{ this.state.resume.info.name }</h4>*/}
-						<InputDisplayer 
-							fontSize="24px"
+						<InputDisplayer
+							inputWidth="200px"
+							left="12px" 
+							fontSize="36px"
+							onCommit={this.handleEditName}
 							defaultValue={this.state.resume.info.name}
-							icon="fa-user-o"
 							/>
+					</div>
+					<div className={style.row}>
+						<InputDisplayer 
+							left="12px"
+							fontSize="16px"
+							onCommit={this.handleEditIntro}
+							defaultValue={this.state.resume.info.intro}
+							/>
+					</div>
+
+					<div className={style.row}>
+						<InputDisplayer
+							icon="fa-phone"
+							defaultValue={this.state.resume.info.phone}/>
+						<InputDisplayer
+							icon="fa-envelope"
+							defaultValue={this.state.resume.info.email}/>
+						<InputDisplayer
+							icon="fa-github"
+							defaultValue={this.state.resume.info.github}/>
+						<InputDisplayer
+							icon="fa-home"
+							defaultValue={this.state.resume.info.blog}/>
+						<InputDisplayer
+							icon="fa-map-marker"
+							defaultValue={this.state.resume.info.city}/>
 					</div>
 				</div>
 			</div>
@@ -162,6 +222,19 @@ class Home extends React.Component{
 	}
 
 
+}
+
+function handleSexNum(sex){
+	switch(sex){
+
+		case 1:
+			return translated.male;
+		case 2:
+			return translated.female;
+		default:
+			return translated.unknown;
+
+	}
 }
 
 function showMessage(ctx, content, type, time){

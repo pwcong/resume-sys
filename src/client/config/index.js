@@ -21,4 +21,4 @@ function checkBrowser() {
 }
 
 export const browser = checkBrowser();
-export const language = navigator.language;
+export const language = navigator.language || 'en';

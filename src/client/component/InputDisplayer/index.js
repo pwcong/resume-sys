@@ -34,11 +34,15 @@ class InputDisplayer extends Component {
         let value = this.refs.input.value;
 
         if(value){
-            this.setState({
-                isEditing: false
-            });
 
-            this.props.onCommit(value);
+            if(this.props.onCheck(value)){
+                this.setState({
+                    isEditing: false
+                });
+
+                this.props.onCommit(value);
+            }
+
         }
 
         
@@ -47,7 +51,11 @@ class InputDisplayer extends Component {
 
     render() {
         return (
-            <div className={style.root}>
+            <div 
+                className={style.root}
+                style={{
+                    left: this.props.left
+                }}>
                 { 
                     this.props.icon ? 
                         <span className={'fa ' + this.props.icon}></span> 
@@ -57,16 +65,27 @@ class InputDisplayer extends Component {
                 { 
                     this.state.isEditing ? 
                         <div>
-                            <input className="form-control" type="text" ref="input" defaultValue={this.props.defaultValue}/>    
+                            <input 
+                                placeholder={this.props.placeholder}
+                                className="form-control" 
+                                type="text" 
+                                ref="input" 
+                                defaultValue={this.props.defaultValue}
+                                style={{
+                                    width: this.props.inputWidth,
+                                    fontSize: this.props.fontSize
+                                }}/>    
                             <span className="fa fa-check" onClick={this.handleCommitEdit}></span>
                             <span className="fa fa-close" onClick={this.handleCancleEdit}></span>
                         </div>
                         :
-                        <div
-                            style={{
-                                fontSize: this.props.fontSize
-                            }}>
-                            {this.props.defaultValue}
+                        <div>
+                            <div
+                                style={{
+                                    fontSize: this.props.fontSize
+                                }}>
+                                {this.props.defaultValue}
+                            </div>
                             <span className={"fa fa-edit " + style['btn-edit'] } onClick={this.handleStartEdit}></span>
                         </div>
                 }
@@ -76,20 +95,30 @@ class InputDisplayer extends Component {
 }
 
 InputDisplayer.propTypes = {
+    placeholder: PropTypes.string,
+    inputWidth: PropTypes.string,
+    left: PropTypes.string,
     icon: PropTypes.string,
     isEditing: PropTypes.bool,
     defaultValue: PropTypes.string,
     fontSize: PropTypes.string,
-    onCommit: PropTypes.func
+    onCommit: PropTypes.func,
+    onCheck: PropTypes.func
 };
 
 InputDisplayer.defaultProps = {
+    placeholder: '',
+    inputWidth: '',
+    left: '0px',
     icon: '',
     isEditing: false,
     defaultValue: '',
-    fontSize: '18px',
+    fontSize: '14px',
     onCommit(value){
         console.log(value);
+    },
+    onCheck(value){
+        return true;
     }
 };
 

@@ -93,9 +93,6 @@ class Editor extends Component {
 }
 
 Editor.propTypes = {
-    id: PropTypes.string,
-    isDatePicker: PropTypes.bool,
-    dateFormat: PropTypes.string,
     placeholder: PropTypes.string,
     inputWidth: PropTypes.string,
     left: PropTypes.string,

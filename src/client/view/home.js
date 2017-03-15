@@ -9,6 +9,7 @@ import Message, { TYPE } from '../component/Message';
 import Modal from '../component/Modal';
 import Editor from '../component/Editor';
 import DatePicker from '../component/Editor/datepicker';
+import Selector from '../component/Editor/selector';
 
 import { imgUrl, translated } from '../config/const';
 
@@ -202,9 +203,16 @@ class Home extends React.Component{
 					</div>
 
 					<div className={style.row}>
-						<Editor 
+						<Selector 
+							options={[
+								{ key: translated.unknown, value: 0},
+								{ key: translated.male, value: 1},
+								{ key: translated.female, value: 2},
+							]}
+							name="radio-sex"
 							icon="fa-transgender"
-							defaultValue={handleSexNum(this.state.resume.info.sex)}/>
+							defaultValue={this.state.resume.info.sex}
+							handleDefaultValue={ value => handleSexNum(value) }/>
 						<DatePicker
 							id="datepicker-birthday"
 							isDatePicker={true}

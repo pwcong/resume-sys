@@ -121,7 +121,7 @@ class Home extends React.Component{
 	render(){
 
 		return (
-			<div className={style.root + ' row'}>
+			<div className={style.root}>
 				<Modal hide={this.state.hideModal}>
 					<form className={style['modal-edit-avatar']}>
 						<div className="form-group">

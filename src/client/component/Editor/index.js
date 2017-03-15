@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import style from './style.css';
 
-class InputDisplayer extends Component {
+class Editor extends Component {
 
     constructor(props){
         super(props);
@@ -47,18 +47,6 @@ class InputDisplayer extends Component {
 
     }
 
-    componentDidUpdate(){
-
-        let ctx = this;
-
-        if(ctx.props.isDatePicker){
-            $('#' + ctx.props.id).datepicker({
-                format: ctx.props.dateFormat
-            });
-        }
-    }
-
-
     render() {
         return (
             <div 
@@ -76,7 +64,6 @@ class InputDisplayer extends Component {
                     this.state.isEditing ? 
                         <div>
                             <input 
-                                id={this.props.id}
                                 placeholder={this.props.placeholder}
                                 className="form-control" 
                                 type="text" 
@@ -105,7 +92,7 @@ class InputDisplayer extends Component {
     }
 }
 
-InputDisplayer.propTypes = {
+Editor.propTypes = {
     id: PropTypes.string,
     isDatePicker: PropTypes.bool,
     dateFormat: PropTypes.string,
@@ -121,10 +108,7 @@ InputDisplayer.propTypes = {
     onCheck: PropTypes.func,
 };
 
-InputDisplayer.defaultProps = {
-    id: '',
-    isDatePicker: false,
-    dateFormat: 'yyyy-mm-dd',
+Editor.defaultProps = {
     placeholder: '',
     inputWidth: '',
     left: '0px',
@@ -143,4 +127,4 @@ InputDisplayer.defaultProps = {
     }
 };
 
-export default InputDisplayer;
+export default Editor;

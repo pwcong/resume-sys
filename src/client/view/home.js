@@ -7,7 +7,8 @@ import style from './style/home.css';
 
 import Message, { TYPE } from '../component/Message';
 import Modal from '../component/Modal';
-import InputDisplayer from '../component/InputDisplayer';
+import Editor from '../component/Editor';
+import DatePicker from '../component/Editor/datepicker';
 
 import { imgUrl, translated } from '../config/const';
 
@@ -183,7 +184,7 @@ class Home extends React.Component{
 					</div>
 					<div className={style.row} style={{marginTop: '48px'}}></div>
 					<div className={style.row}>
-						<InputDisplayer
+						<Editor
 							inputWidth="200px"
 							left="12px" 
 							fontSize="36px"
@@ -192,7 +193,7 @@ class Home extends React.Component{
 							/>
 					</div>
 					<div className={style.row}>
-						<InputDisplayer 
+						<Editor 
 							left="12px"
 							fontSize="16px"
 							onCommit={this.handleEditIntro}
@@ -201,7 +202,10 @@ class Home extends React.Component{
 					</div>
 
 					<div className={style.row}>
-						<InputDisplayer
+						<Editor 
+							icon="fa-transgender"
+							defaultValue={handleSexNum(this.state.resume.info.sex)}/>
+						<DatePicker
 							id="datepicker-birthday"
 							isDatePicker={true}
 							inputWidth="110px"
@@ -209,30 +213,29 @@ class Home extends React.Component{
 							defaultValue={this.state.resume.info.birthday}
 							handleDefaultValue={(value) => {
 								let date = new Date(value);
-								console.log(date)
 								return date.getFullYear() + '-' + (handleMonthOrDate(date.getMonth()+1)) + '-' + handleMonthOrDate(date.getDate());
 							}}/>
-						<InputDisplayer
+						<Editor
 							inputWidth="100px"
 							icon="fa-map-marker"
 							defaultValue={this.state.resume.info.city}/>
 					</div>
 
 					<div className={style.row}>
-						<InputDisplayer
+						<Editor
 							icon="fa-phone"
 							defaultValue={this.state.resume.info.phone}/>
-						<InputDisplayer
+						<Editor
 							icon="fa-envelope"
 							defaultValue={this.state.resume.info.email}/>
 					</div>
 
 					<div className={style.row}>
 
-						<InputDisplayer
+						<Editor
 							icon="fa-github"
 							defaultValue={this.state.resume.info.github}/>
-						<InputDisplayer
+						<Editor
 							icon="fa-home"
 							defaultValue={this.state.resume.info.blog}/>
 					</div>

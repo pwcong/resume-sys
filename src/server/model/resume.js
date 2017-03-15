@@ -67,6 +67,10 @@ const schema = mongoose.Schema({
             type: String,
             default: ''
         },
+        record: {
+            type: String,
+            default: ''
+        },
         birthday: {
             type: Date,
             default: new Date()

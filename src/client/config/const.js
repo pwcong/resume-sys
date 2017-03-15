@@ -102,6 +102,10 @@ export const string = {
         'zh-CN': '邮箱',
         'en': 'Email'
     },
+    record: {
+        'zh-CN': '学历',
+        'en': 'Record'
+    },
     github: {
         'zh-CN': 'Github',
         'en': 'Github'
@@ -148,6 +152,7 @@ export const translated = {
     avatarUrl: string.avatarUrl[language],
     blog: string.blog[language],
     github: string.github[language],
+    record: string.record[language],
     male: string.male[language],
     female: string.female[language],
     unknown: string.unknown[language]

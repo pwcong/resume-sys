@@ -11,6 +11,7 @@ export const INITIAL_STATE_RESUME = {
         blog: '',
         email: '',
         phone: '',
+        record: '',
         birthday: '',
         sex: 0,
         name: '',

@@ -9,7 +9,7 @@ import Message, { TYPE } from '../component/Message';
 import Modal from '../component/Modal';
 import Editor from '../component/Editor';
 import DatePicker from '../component/Editor/datepicker';
-import Selector from '../component/Editor/selector';
+import RadioButtons from '../component/Editor/radiobuttons';
 
 import { imgUrl, translated } from '../config/const';
 
@@ -37,9 +37,11 @@ class Home extends React.Component{
 		this.handleShowEditAvatarModal = this.handleShowEditAvatarModal.bind(this);
 		this.handleHideEditAvatarModal = this.handleHideEditAvatarModal.bind(this);
 		this.handleEditAvatar = this.handleEditAvatar.bind(this);
-		this.handleEditName = this.handleEditName.bind(this);
-		this.handleEditIntro = this.handleEditIntro.bind(this);
+
+		this.handleEditInfo = this.handleEditInfo.bind(this);
+		
 	}
+
 
 	handleShowEditAvatarModal(){
 		this.setState({
@@ -69,7 +71,7 @@ class Home extends React.Component{
 
 	}
 	
-	handleEditName(value){
+	handleEditInfo(key, value){
 
 		let ctx = this;
 
@@ -77,7 +79,7 @@ class Home extends React.Component{
 
 			resume: Object.assign({}, ctx.state.resume, {
 				info: Object.assign({}, ctx.state.resume.info, {
-					name: value
+					[key]: value
 				})
 			})
 
@@ -85,19 +87,6 @@ class Home extends React.Component{
 
 	}
 
-	handleEditIntro(value){
-		let ctx = this;
-
-		ctx.setState({
-
-			resume: Object.assign({}, ctx.state.resume, {
-				info: Object.assign({}, ctx.state.resume.info, {
-					intro: value
-				})
-			})
-
-		});
-	}
 
 	componentWillMount(){
 		let ctx = this;
@@ -132,7 +121,7 @@ class Home extends React.Component{
 	render(){
 
 		return (
-			<div className={style.root}>
+			<div className={style.root + ' row'}>
 				<Modal hide={this.state.hideModal}>
 					<form className={style['modal-edit-avatar']}>
 						<div className="form-group">
@@ -186,34 +175,35 @@ class Home extends React.Component{
 					<div className={style.row} style={{marginTop: '48px'}}></div>
 					<div className={style.row}>
 						<Editor
+							placeholder={translated.name}
 							inputWidth="200px"
 							left="12px" 
 							fontSize="36px"
-							onCommit={this.handleEditName}
+							onCommit={value => {
+								this.handleEditInfo('name', value);
+							}}
 							defaultValue={this.state.resume.info.name}
-							/>
-					</div>
-					<div className={style.row}>
-						<Editor 
-							left="12px"
-							fontSize="16px"
-							onCommit={this.handleEditIntro}
-							defaultValue={this.state.resume.info.intro}
 							/>
 					</div>
 
 					<div className={style.row}>
-						<Selector 
+						<RadioButtons 
 							options={[
 								{ key: translated.unknown, value: 0},
 								{ key: translated.male, value: 1},
 								{ key: translated.female, value: 2},
 							]}
+							onCommit={value => {
+								this.handleEditInfo('sex', parseInt(value));
+							}}
 							name="radio-sex"
 							icon="fa-transgender"
 							defaultValue={this.state.resume.info.sex}
 							handleDefaultValue={ value => handleSexNum(value) }/>
 						<DatePicker
+							onCommit={value => {
+								this.handleEditInfo('birthday', value);
+							}}
 							id="datepicker-birthday"
 							isDatePicker={true}
 							inputWidth="110px"
@@ -223,7 +213,21 @@ class Home extends React.Component{
 								let date = new Date(value);
 								return date.getFullYear() + '-' + (handleMonthOrDate(date.getMonth()+1)) + '-' + handleMonthOrDate(date.getDate());
 							}}/>
+
 						<Editor
+							onCommit={value => {
+								this.handleEditInfo('record', value);
+							}}
+							inputWidth="100px"
+							placeholder={translated.record}
+							icon="fa-mortar-board"
+							defaultValue={this.state.resume.info.record}/>
+
+						<Editor
+							onCommit={value => {
+								this.handleEditInfo('city', value);
+							}}
+							placeholder={translated.city}
 							inputWidth="100px"
 							icon="fa-map-marker"
 							defaultValue={this.state.resume.info.city}/>
@@ -231,19 +235,32 @@ class Home extends React.Component{
 
 					<div className={style.row}>
 						<Editor
+							onCommit={value => {
+								this.handleEditInfo('phone', value);
+							}}
+							placeholder={translated.phone}
 							icon="fa-phone"
 							defaultValue={this.state.resume.info.phone}/>
 						<Editor
+							onCommit={value => {
+								this.handleEditInfo('email', value);
+							}}
+							placeholder={translated.email}
 							icon="fa-envelope"
 							defaultValue={this.state.resume.info.email}/>
-					</div>
-
-					<div className={style.row}>
 
 						<Editor
+							onCommit={value => {
+								this.handleEditInfo('github', value);
+							}}
+							placeholder={translated.github}
 							icon="fa-github"
 							defaultValue={this.state.resume.info.github}/>
 						<Editor
+							onCommit={value => {
+								this.handleEditInfo('blog', value);
+							}}
+							placeholder={translated.blog}
 							icon="fa-home"
 							defaultValue={this.state.resume.info.blog}/>
 					</div>

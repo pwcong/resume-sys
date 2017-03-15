@@ -11,7 +11,10 @@
 
 :local .info{
     position: relative;
-    border: 1px red solid;
+    
+    border-left: 1px grey solid;
+    border-right: 1px grey solid;
+    
 }
 
 :local .row{

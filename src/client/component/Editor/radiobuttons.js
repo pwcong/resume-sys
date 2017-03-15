@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import style from './style.css';
 
-class Selector extends Component {
+class RadioButtons extends Component {
 
     constructor(props){
         super(props);
@@ -130,7 +130,7 @@ class Selector extends Component {
     }
 }
 
-Selector.propTypes = {
+RadioButtons.propTypes = {
     options: PropTypes.array,
     name: PropTypes.string,
     placeholder: PropTypes.string,
@@ -144,7 +144,7 @@ Selector.propTypes = {
     onCheck: PropTypes.func,
 };
 
-Selector.defaultProps = {
+RadioButtons.defaultProps = {
     options: [],
     name: '',
     placeholder: '',
@@ -164,4 +164,4 @@ Selector.defaultProps = {
     }
 };
 
-export default Selector;
+export default RadioButtons;

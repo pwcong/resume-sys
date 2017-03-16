@@ -126,9 +126,9 @@ export const string = {
         'zh-CN': '未知',
         'en': '?'
     },
-    experience: {
+    projectExperience: {
         'zh-CN': '项目经验',
-        'en': 'Experience'
+        'en': 'Experience of Project'
     },
     add: {
         'zh-CN': '添加',
@@ -157,7 +157,40 @@ export const string = {
     summary: {
         'zh-CN': '描述',
         'en': 'Summary'
+    },
+    companyName: {
+        'zh-CN': '公司名字',
+        'en': 'Company Name'
+    },
+    workCycle: {
+        'zh-CN': '任职周期',
+        'en': 'Work Cycle'
+    },
+    job: {
+        'zh-CN': '职位',
+        'en': 'Job'
+    },
+    workExperience: {
+        'zh-CN': '工作经验',
+        'en': 'Experience of Work'
+    },
+    educationExperience: {
+        'zh-CN': '教育经历',
+        'en': 'Experience of Education'
+    },
+    schoolName: {
+        'zh-CN': '学校名称',
+        'en': 'School Name'
+    },
+    degree: {
+        'zh-CN': '学位',
+        'en': 'Degree'
+    },
+    major: {
+        'zh-CN': '专业',
+        'en': 'Major'
     }
+
 
 }
 
@@ -188,13 +221,21 @@ export const translated = {
     male: string.male[language],
     female: string.female[language],
     unknown: string.unknown[language],
-    experience: string.experience[language],
+    projectExperience: string.projectExperience[language],
     add: string.add[language],
     projectTitle: string.projectTitle[language],
     projectCycle: string.projectCycle[language],
     startDate: string.startDate[language],
     endDate: string.endDate[language],
     role: string.role[language],
-    summary: string.summary[language]
-
+    summary: string.summary[language],
+    companyName: string.companyName[language],
+    job: string.job[language],
+    workCycle: string.workCycle[language],
+    workExperience: string.workExperience[language],
+    schoolName: string.schoolName[language],
+    degree: string.degree[language],
+    major: string.major[language],
+    educationExperience: string.educationExperience[language]
+    
 }

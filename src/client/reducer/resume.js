@@ -20,6 +20,27 @@ export function  newExperienceItem() {
 
 }
 
+export function newWorkItem(){
+    return ({
+        name: translated.companyName,
+        job: translated.job,
+        startDate: new Date(),
+        endDate: new Date(),
+        summary: translated.summary
+    });
+}
+
+export function newEducationItem(){
+    return ({
+        name: translated.schoolName,
+        degree: translated.degree,
+        major: translated.major,
+        startDate: new Date(),
+        endDate: new Date(),
+        summary: translated.summary
+    });
+}
+
 export const INITIAL_STATE_RESUME = {
     uid: '',
     info: {

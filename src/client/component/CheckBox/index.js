@@ -17,12 +17,12 @@ class CheckBox extends Component {
         return (
             <label className="checkbox" htmlFor={this.props.id}>
                 <input 
+                    name={this.props.name}
                     onChange={this.handleChange}
                     type="checkbox"
                     value={this.props.value}
                     checked={this.props.checked}
-                    id={this.props.id} 
-                    data-toggle="checkbox" 
+                    id={this.props.id}
                     className="custom-checkbox"/>
 
                 <span className="icons">
@@ -36,6 +36,7 @@ class CheckBox extends Component {
 }
 
 CheckBox.propTypes = {
+    name: PropTypes.string.isRequired,
     id: PropTypes.string,
     value: PropTypes.string,
     checked: PropTypes.bool,
@@ -44,6 +45,7 @@ CheckBox.propTypes = {
 };
 
 CheckBox.defaultProps = {
+    name: 'checkbox',
     checked: false,
     id: 'checkbox',
     value: 'checkbox',

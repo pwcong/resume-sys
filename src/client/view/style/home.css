@@ -3,7 +3,7 @@
 }
 
 :local .banner{
-    height: 128px;
+    height: 160px;
     background-size: cover;
     background-repeat: no-repeat;
     
@@ -82,6 +82,22 @@
 }
 
 :local .experience{
+
+    position: relative;
+    border-left: 1px #34495e solid;
+    border-right: 1px #34495e solid;
+
+}
+
+:local .work{
+
+    position: relative;
+    border-left: 1px #34495e solid;
+    border-right: 1px #34495e solid;
+
+}
+
+:local .education{
 
     position: relative;
     border-left: 1px #34495e solid;

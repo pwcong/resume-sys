@@ -2,17 +2,18 @@ import React, { Component, PropTypes } from 'react';
 
 import style from './style.css';
 
-class ExperienceItem extends Component {
+class EducationItem extends Component {
 
     constructor(props){
         super(props);
 
         this.state = {
             isEditing: this.props.isEditing,
-            title: this.props.title,
+            name: this.props.name,
             startDate: this.props.startDate,
             endDate: this.props.endDate,
-            role: this.props.role,
+            degree: this.props.degree,
+            major: this.props.major,
             summary: this.props.summary
         };
 
@@ -28,10 +29,11 @@ class ExperienceItem extends Component {
         let ctx = this;
 
         let value = {
-            title: ctx.state.title,
+            name: ctx.state.name,
             startDate: ctx.refs.inputStartDate.value,
             endDate: ctx.refs.inputEndDate.value,
-            role: ctx.state.role,
+            major: ctx.state.major,
+            degree: ctx.state.degree,
             summary: ctx.state.summary
         };
 
@@ -79,7 +81,7 @@ class ExperienceItem extends Component {
         let ctx = this;
 
         if(ctx.state.isEditing){
-            $('#datepicker-experience-input-daterange-' + ctx.props.index).datepicker({
+            $('#datepicker-education-input-daterange-' + ctx.props.index).datepicker({
                 format: ctx.props.dateFormat
             });
         }
@@ -118,12 +120,12 @@ class ExperienceItem extends Component {
                             <div>
                                 <label>
                                     <strong>
-                                        {this.props.titlePlaceHolder}
+                                        {this.props.namePlaceHolder}
                                     </strong>
                                     <input 
-                                        defaultValue={this.props.title}
+                                        defaultValue={this.props.name}
                                         onChange={ e => {
-                                            this.handleChangeValue('title', e.target.value)
+                                            this.handleChangeValue('name', e.target.value)
                                         }}
                                         type="text" 
                                         className="form-control input-sm"/>
@@ -132,12 +134,26 @@ class ExperienceItem extends Component {
                             <div>
                                 <label>
                                     <strong>
-                                        {this.props.rolePlaceHolder}
+                                        {this.props.degreePlaceHolder}
                                     </strong>
                                     <input
-                                        defaultValue={this.props.role}
+                                        defaultValue={this.props.degree}
                                         onChange={ e => {
-                                            this.handleChangeValue('role', e.target.value)
+                                            this.handleChangeValue('degree', e.target.value)
+                                        }}
+                                        type="text" 
+                                        className="form-control input-sm"/>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <strong>
+                                        {this.props.majorPlaceHolder}
+                                    </strong>
+                                    <input
+                                        defaultValue={this.props.major}
+                                        onChange={ e => {
+                                            this.handleChangeValue('major', e.target.value)
                                         }}
                                         type="text" 
                                         className="form-control input-sm"/>
@@ -150,7 +166,7 @@ class ExperienceItem extends Component {
                                     </strong>
                                     <div
                                         className="input-group input-daterange" 
-                                        id={'datepicker-experience-input-daterange-' + this.props.index}>
+                                        id={'datepicker-education-input-daterange-' + this.props.index}>
                                         <input 
                                             ref="inputStartDate"
                                             type="text" 
@@ -196,7 +212,7 @@ class ExperienceItem extends Component {
                         <div>
                             <div style={{}}>
                                 <strong style={{fontSize: '24px'}}>
-                                    {this.props.title}
+                                    {this.props.name}
                                 </strong>
                             </div>
                             <div
@@ -210,8 +226,10 @@ class ExperienceItem extends Component {
                                 }}>
 
                                 <div>
-                                    <span className="fa fa-user" style={{marginRight: '4px'}}></span>
-                                    {this.props.role}
+                                    <span className="fa fa-graduation-cap" style={{marginRight: '4px'}}></span>
+                                    {this.props.degree}
+                                    <span className="fa fa-book" style={{marginRight: '4px', marginLeft: '8px'}}></span>
+                                    {this.props.major}
                                 </div>
                                 <div>
                                     <span className="fa fa-clock-o" style={{marginRight: '4px'}}></span>
@@ -233,17 +251,19 @@ class ExperienceItem extends Component {
     }
 }
 
-ExperienceItem.propTypes = {
+EducationItem.propTypes = {
     index: PropTypes.number.isRequired,
     isEditing: PropTypes.bool,
-    title: PropTypes.string,
-    titlePlaceHolder: PropTypes.string,
+    name: PropTypes.string,
+    namePlaceHolder: PropTypes.string,
     datePlaceHolder: PropTypes.string,
     dateFormat: PropTypes.string,
     startDate: PropTypes.string,
     endDate: PropTypes.string,
-    role: PropTypes.string,
-    rolePlaceHolder: PropTypes.string,
+    degree: PropTypes.string,
+    degreePlaceHolder: PropTypes.string,
+    major: PropTypes.string,
+    majorPlaceHolder: PropTypes.string,
     summary: PropTypes.string,
     summaryPlaceHolder: PropTypes.string,
     onCommit: PropTypes.func,
@@ -251,17 +271,19 @@ ExperienceItem.propTypes = {
     onCheck: PropTypes.func
 };
 
-ExperienceItem.defaultProps = {
+EducationItem.defaultProps = {
     index: 0,
     isEditing: false,
-    title: 'Title',
-    titlePlaceHolder: 'Title PlaceHolder',
+    name: 'Name',
+    namePlaceHolder: 'Name PlaceHolder',
     datePlaceHolder: 'Date PlaceHolder',
     dateFormat: 'yyyy/mm/dd',
     startDate: '2017/02/01',
     endDate: '2017/02/01',
-    role: 'Role',
-    rolePlaceHolder: 'Role PlaceHolder',
+    degree: 'Degree',
+    degreePlaceHolder: 'Degree PlaceHolder',
+    major: 'Major',
+    majorPlaceHolder: 'Major PlaceHolder',
     summary: 'Summary',
     summaryPlaceHolder: 'Summary PlaceHolder',
     onCommit(index, value){
@@ -275,4 +297,4 @@ ExperienceItem.defaultProps = {
     }
 };
 
-export default ExperienceItem;
+export default EducationItem;

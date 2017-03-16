@@ -13,6 +13,8 @@ import RadioButtons from '../component/Editor/radiobuttons';
 import IconButton from '../component/IconButton';
 import CheckBox from '../component/CheckBox';
 import ExperienceItem from '../component/Item/experience';
+import WorkItem from '../component/Item/work';
+import EducationItem from '../component/Item/education';
 
 import { imgUrl, translated } from '../config/const';
 
@@ -22,7 +24,9 @@ import {
 
 import {
 	INITIAL_STATE_RESUME,
-	newExperienceItem
+	newExperienceItem,
+	newWorkItem,
+	newEducationItem
 } from '../reducer/resume';
 
 class Home extends React.Component{
@@ -352,14 +356,16 @@ class Home extends React.Component{
 						className={style.row} 
 						style={{
 							marginTop: '48px',
-							borderTop: '1px grey solid'
+							borderTop: '1px #34495e solid'
 						}}>
 						<div className={style.label}>
-							{translated.experience}
+							{translated.projectExperience}
 						</div>
 						<div className={style.tools}>
 							<div>
 								<CheckBox
+									id="checkbox-experience"
+									name="checkbox-experience"
 									checked={this.state.resume.experience.display} 
 									label=""
 									onChange={value => {
@@ -401,6 +407,134 @@ class Home extends React.Component{
 									summary={item.summary}
 									onRemove={index => {
 										this.handleRemoveListItem('experience', index);
+									}}
+									summaryPlaceHolder={translated.summary}/>
+							)
+						}
+					</div>
+				</div>
+
+				<div className={style.work + ' row'}>
+					<div 
+						className={style.row} 
+						style={{
+							marginTop: '48px',
+							borderTop: '1px #34495e solid'
+						}}>
+						<div className={style.label}>
+							{translated.workExperience}
+						</div>
+						<div className={style.tools}>
+							<div>
+								<CheckBox
+									id="checkbox-work"
+									name="checkbox-work"
+									checked={this.state.resume.work.display} 
+									label=""
+									onChange={value => {
+										this.handleChangeDisplay('work', value);
+									}}
+									/>
+							</div>
+							<div>
+								<IconButton 
+									onClick={() => {
+										this.handleAddListItem('work', newWorkItem());
+									}} 
+									icon="fa-plus-circle" 
+									label={translated.add}/>
+							</div>
+						</div>
+					</div>
+					<div 
+						className={style.row}
+						style={{
+							paddingRight: '16px',
+							paddingLeft: '16px',
+						}}>
+						{
+							this.state.resume.work.list.map((item, index) => 
+								<WorkItem
+									key={'item-work'+index}
+									index={index}
+									name={item.name}
+									onCommit={(index, value) => {
+										this.handleChangeListItem('work', index, value);
+									}}
+									namePlaceHolder={translated.companyName}
+									datePlaceHolder={translated.projectCycle}
+									startDate={handleDateTime(item.startDate, '/')}
+									endDate={handleDateTime(item.endDate, '/')}
+									job={item.job}
+									jobPlaceHolder={translated.job}
+									summary={item.summary}
+									onRemove={index => {
+										this.handleRemoveListItem('work', index);
+									}}
+									summaryPlaceHolder={translated.summary}/>
+							)
+						}
+					</div>
+				</div>
+
+				<div className={style.education + ' row'}>
+					<div 
+						className={style.row} 
+						style={{
+							marginTop: '48px',
+							borderTop: '1px #34495e solid'
+						}}>
+						<div className={style.label}>
+							{translated.educationExperience}
+						</div>
+						<div className={style.tools}>
+							<div>
+								<CheckBox
+									id="checkbox-education"
+									name="checkbox-education"
+									checked={this.state.resume.education.display} 
+									label=""
+									onChange={value => {
+										this.handleChangeDisplay('education', value);
+									}}
+									/>
+							</div>
+							<div>
+								<IconButton 
+									onClick={() => {
+										this.handleAddListItem('education', newEducationItem());
+									}} 
+									icon="fa-plus-circle" 
+									label={translated.add}/>
+							</div>
+						</div>
+					</div>
+					<div 
+						className={style.row}
+						style={{
+							paddingRight: '16px',
+							paddingLeft: '16px',
+						}}>
+						{
+							this.state.resume.education.list.map((item, index) => 
+								<EducationItem
+									key={'item-education'+index}
+									index={index}
+									name={item.name}
+									onCommit={(index, value) => {
+										this.handleChangeListItem('education', index, value);
+									}}
+									namePlaceHolder={translated.schoolName}
+									datePlaceHolder={translated.projectCycle}
+									startDate={handleDateTime(item.startDate, '/')}
+									endDate={handleDateTime(item.endDate, '/')}
+									major={item.major}
+									majorPlaceHolder={translated.major}
+									degree={item.degree}
+									degreePlaceHolder={translated.degree}
+									summary={item.summary}
+									onRemove={index => {
+										this.handleRemoveListItem('education', index);
 									}}
 									summaryPlaceHolder={translated.summary}/>
 							)

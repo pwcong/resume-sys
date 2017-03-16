@@ -2,6 +2,24 @@ import {
     ACTION_RESUME_GET
 } from '../actions/resume';
 
+import {
+    translated
+} from '../config/const'
+
+export function  newExperienceItem() {
+
+    return ({
+
+        title: translated.projectTitle,
+        role: translated.role,
+        startDate: new Date(),
+        endDate: new Date(),
+        summary: translated.summary
+
+    });
+
+}
+
 export const INITIAL_STATE_RESUME = {
     uid: '',
     info: {

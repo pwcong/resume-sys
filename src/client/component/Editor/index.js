@@ -65,7 +65,7 @@ class Editor extends Component {
                         <div>
                             <input 
                                 placeholder={this.props.placeholder}
-                                className="form-control" 
+                                className={"form-control " + handleSizeProp(this.props.size)} 
                                 type="text" 
                                 ref="input" 
                                 defaultValue={this.props.handleDefaultValue(this.props.defaultValue)}
@@ -92,7 +92,23 @@ class Editor extends Component {
     }
 }
 
+function handleSizeProp(size){
+
+    switch(size){
+
+        case 'small':
+            return 'input-sm';
+        case 'large':
+            return 'input-lg';
+        default:
+            return '';
+
+    }
+
+}
+
 Editor.propTypes = {
+    size: PropTypes.string,
     placeholder: PropTypes.string,
     inputWidth: PropTypes.string,
     left: PropTypes.string,
@@ -106,6 +122,7 @@ Editor.propTypes = {
 };
 
 Editor.defaultProps = {
+    size: 'small',
     placeholder: '',
     inputWidth: '',
     left: '0px',

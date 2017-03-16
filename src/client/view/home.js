@@ -12,6 +12,7 @@ import DatePicker from '../component/Editor/datepicker';
 import RadioButtons from '../component/Editor/radiobuttons';
 import IconButton from '../component/IconButton';
 import CheckBox from '../component/CheckBox';
+import ExperienceItem from '../component/Item/experience';
 
 import { imgUrl, translated } from '../config/const';
 
@@ -20,7 +21,8 @@ import {
 } from '../actions/resume';
 
 import {
-	INITIAL_STATE_RESUME
+	INITIAL_STATE_RESUME,
+	newExperienceItem
 } from '../reducer/resume';
 
 class Home extends React.Component{
@@ -42,6 +44,12 @@ class Home extends React.Component{
 
 		this.handleEditInfo = this.handleEditInfo.bind(this);
 		this.handleChangeDisplay = this.handleChangeDisplay.bind(this);
+
+		this.handleAddListItem = this.handleAddListItem.bind(this);
+		this.handleRemoveListItem = this.handleRemoveListItem.bind(this);
+		this.handleChangeListItem = this.handleChangeListItem.bind(this);
+
+
 	}
 
 
@@ -105,6 +113,60 @@ class Home extends React.Component{
 
 	}
 
+	handleChangeListItem(key, index, value){
+
+		let ctx = this;
+
+		ctx.setState({
+
+			resume: Object.assign({}, ctx.state.resume, {
+				[key]: Object.assign({}, ctx.state.resume[key], {
+					list: ctx.state.resume[key].list.map((item, i) => {
+						if(index==i)
+							return value;
+						else	
+							return item;
+					})
+				})
+			})
+
+		});
+
+	}
+
+	handleAddListItem(key, value){
+
+		let ctx = this;
+
+		ctx.setState({
+
+			resume: Object.assign({}, ctx.state.resume, {
+				[key]: Object.assign({}, ctx.state.resume[key], {
+					list: [...ctx.state.resume[key].list, value]
+				})
+			})
+
+		});
+
+	}
+
+	handleRemoveListItem(key, index){
+
+		let ctx = this;
+
+		ctx.setState({
+
+			resume: Object.assign({}, ctx.state.resume, {
+				[key]: Object.assign({}, ctx.state.resume[key], {
+					list: ctx.state.resume[key].list.filter((item, i) => {
+						return !(i==index);
+					})
+				})
+			})
+
+		});		
+	}
+
 
 	componentWillMount(){
 		let ctx = this;
@@ -147,7 +209,7 @@ class Home extends React.Component{
 						</div>
 						<button 
 							type="button" 
-							className="btn btn-block btn-large btn-info"
+							className="btn btn-block btn-large btn-primary"
 							onClick={this.handleEditAvatar}
 							>
 							{translated.check}
@@ -196,6 +258,7 @@ class Home extends React.Component{
 							placeholder={translated.name}
 							inputWidth="200px"
 							left="12px" 
+							size="normal"
 							fontSize="36px"
 							onCommit={value => {
 								this.handleEditInfo('name', value);
@@ -229,7 +292,7 @@ class Home extends React.Component{
 							defaultValue={this.state.resume.info.birthday}
 							handleDefaultValue={(value) => {
 								let date = new Date(value);
-								return date.getFullYear() + '-' + (handleMonthOrDate(date.getMonth()+1)) + '-' + handleMonthOrDate(date.getDate());
+								return handleDateTime(date, '-')
 							}}/>
 
 						<Editor
@@ -305,9 +368,43 @@ class Home extends React.Component{
 									/>
 							</div>
 							<div>
-								<IconButton icon="fa-plus-circle" label={translated.add}/>
+								<IconButton 
+									onClick={() => {
+										this.handleAddListItem('experience', newExperienceItem());
+									}} 
+									icon="fa-plus-circle" 
+									label={translated.add}/>
 							</div>
 						</div>
+					</div>
+					<div 
+						className={style.row}
+						style={{
+							paddingRight: '16px',
+							paddingLeft: '16px',
+						}}>
+						{
+							this.state.resume.experience.list.map((item, index) => 
+								<ExperienceItem
+									key={'item-experience'+index}
+									index={index}
+									title={item.title}
+									onCommit={(index, value) => {
+										this.handleChangeListItem('experience', index, value);
+									}}
+									titlePlaceHolder={translated.projectTitle}
+									datePlaceHolder={translated.projectCycle}
+									startDate={handleDateTime(item.startDate, '/')}
+									endDate={handleDateTime(item.endDate, '/')}
+									role={item.role}
+									rolePlaceHolder={translated.role}
+									summary={item.summary}
+									onRemove={index => {
+										this.handleRemoveListItem('experience', index);
+									}}
+									summaryPlaceHolder={translated.summary}/>
+							)
+						}
 					</div>
 				</div>
 
@@ -316,6 +413,14 @@ class Home extends React.Component{
 		
 	}
 
+
+}
+
+function handleDateTime(dateTime, split){
+
+	let d = new Date(dateTime);
+
+	return d.getFullYear() + split + (handleMonthOrDate(d.getMonth()+1)) + split + handleMonthOrDate(d.getDate());
 
 }
 

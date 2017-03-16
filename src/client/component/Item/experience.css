@@ -1,0 +1,39 @@
+:local .root{
+    position: relative;
+    width: 100%;
+    margin-bottom: 16px;
+    padding: 16px;
+    box-shadow: 0px 0px 0px 0px #34495e;
+
+    transition: box-shadow 0.3s;
+}
+
+:local .root:hover{
+    box-shadow: 0px 0px 5px 0px #34495e;
+}
+
+:local .tools{
+    position: absolute;
+    right: 4px;
+    top: 4px;
+}
+
+:local .tools span{
+    font-size: 24px;
+    cursor: pointer;
+    margin: 8px;
+    opacity: 0;
+    transition: opacity 0.3s,color 0.3s;
+}
+
+:local .tools span:active{
+    color: #009C7D;
+}
+
+:local .tools span:hover{
+
+    color: #1abc9c;
+}
+:local .root:hover .tools span{
+    opacity: 1;
+}

@@ -77,7 +77,7 @@ class DatePicker extends Component {
                             <input 
                                 id={this.props.id}
                                 placeholder={this.props.placeholder}
-                                className="form-control" 
+                                className="form-control input-sm" 
                                 type="text" 
                                 ref="input" 
                                 defaultValue={this.props.handleDefaultValue(this.props.defaultValue)}

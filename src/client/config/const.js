@@ -133,6 +133,30 @@ export const string = {
     add: {
         'zh-CN': '添加',
         'en': 'Add'
+    },
+    projectTitle: {
+        'zh-CN': '项目名称',
+        'en': 'Title of Project '
+    },
+    projectCycle: {
+        'zh-CN': '项目周期',
+        'en': 'Cycle of Project'
+    },
+    startDate: {
+        'zh-CN': '开始日期',
+        'en': 'Start Date'
+    },
+    endDate: {
+        'zh-CN': '结束日期',
+        'en': 'End Date'
+    },
+    role: {
+        'zh-CN': '角色',
+        'en': 'Role'
+    },
+    summary: {
+        'zh-CN': '描述',
+        'en': 'Summary'
     }
 
 }
@@ -165,7 +189,12 @@ export const translated = {
     female: string.female[language],
     unknown: string.unknown[language],
     experience: string.experience[language],
-    add: string.add[language]
-    
+    add: string.add[language],
+    projectTitle: string.projectTitle[language],
+    projectCycle: string.projectCycle[language],
+    startDate: string.startDate[language],
+    endDate: string.endDate[language],
+    role: string.role[language],
+    summary: string.summary[language]
 
 }

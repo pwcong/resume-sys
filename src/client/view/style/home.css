@@ -12,8 +12,8 @@
 :local .info{
     position: relative;
     
-    border-left: 1px grey solid;
-    border-right: 1px grey solid;
+    border-left: 1px #34495e solid;
+    border-right: 1px #34495e solid;
     
 }
 
@@ -80,3 +80,37 @@
     border-radius: 4px;
     background-color: white;
 }
+
+:local .experience{
+
+    position: relative;
+    border-left: 1px #34495e solid;
+    border-right: 1px #34495e solid;
+
+}
+
+:local .label{
+    color: white;
+    top: -18px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 36px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 18px;
+    background-color: #34495e;
+}
+
+:local .tools{
+    padding-left: 16px;
+    padding-right: 16px;
+    position: absolute;
+    right: 8px;
+    height: 36px;
+    top: -18px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
+

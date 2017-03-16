@@ -82,6 +82,7 @@ class RadioButtons extends Component {
                                             className="radio" 
                                             htmlFor={this.props.name+item.value}>
                                             <input 
+                                                checked={this.state.value==item.value}
                                                 onChange={this.handleChangeRadio}
                                                 type="radio" 
                                                 name={this.props.name}

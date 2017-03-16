@@ -125,6 +125,14 @@ export const string = {
     unknown: {
         'zh-CN': '未知',
         'en': '?'
+    },
+    experience: {
+        'zh-CN': '项目经验',
+        'en': 'Experience'
+    },
+    add: {
+        'zh-CN': '添加',
+        'en': 'Add'
     }
 
 }
@@ -155,6 +163,9 @@ export const translated = {
     record: string.record[language],
     male: string.male[language],
     female: string.female[language],
-    unknown: string.unknown[language]
+    unknown: string.unknown[language],
+    experience: string.experience[language],
+    add: string.add[language]
+    
 
 }

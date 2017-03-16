@@ -10,6 +10,8 @@ import Modal from '../component/Modal';
 import Editor from '../component/Editor';
 import DatePicker from '../component/Editor/datepicker';
 import RadioButtons from '../component/Editor/radiobuttons';
+import IconButton from '../component/IconButton';
+import CheckBox from '../component/CheckBox';
 
 import { imgUrl, translated } from '../config/const';
 
@@ -39,7 +41,7 @@ class Home extends React.Component{
 		this.handleEditAvatar = this.handleEditAvatar.bind(this);
 
 		this.handleEditInfo = this.handleEditInfo.bind(this);
-		
+		this.handleChangeDisplay = this.handleChangeDisplay.bind(this);
 	}
 
 
@@ -80,6 +82,22 @@ class Home extends React.Component{
 			resume: Object.assign({}, ctx.state.resume, {
 				info: Object.assign({}, ctx.state.resume.info, {
 					[key]: value
+				})
+			})
+
+		});
+
+	}
+
+	handleChangeDisplay(key, value){
+
+		let ctx = this;
+
+		ctx.setState({
+
+			resume: Object.assign({}, ctx.state.resume, {
+				[key]: Object.assign({}, ctx.state.resume[key], {
+					display: value	
 				})
 			})
 
@@ -265,6 +283,34 @@ class Home extends React.Component{
 							defaultValue={this.state.resume.info.blog}/>
 					</div>
 				</div>
+
+				<div className={style.experience + ' row'}>
+					<div 
+						className={style.row} 
+						style={{
+							marginTop: '48px',
+							borderTop: '1px grey solid'
+						}}>
+						<div className={style.label}>
+							{translated.experience}
+						</div>
+						<div className={style.tools}>
+							<div>
+								<CheckBox
+									checked={this.state.resume.experience.display} 
+									label=""
+									onChange={value => {
+										this.handleChangeDisplay('experience', value);
+									}}
+									/>
+							</div>
+							<div>
+								<IconButton icon="fa-plus-circle" label={translated.add}/>
+							</div>
+						</div>
+					</div>
+				</div>
+
 			</div>
 		)
 		
@@ -287,7 +333,7 @@ function handleSexNum(sex){
 }
 
 function handleMonthOrDate(v){
-	return v.length > 1 ? v : '0'+v;
+	return (v+'').length > 1 ? v : '0'+v;
 }
 
 function showMessage(ctx, content, type, time){

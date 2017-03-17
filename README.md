@@ -35,6 +35,19 @@ Database
 * MongoDB
 * Redis
 
+# Usage
+## Add/Edit Resume
+When you register a new account it will automatically create a new resume binding the new account.
+
+Only when you login successfully can you edit your resume.
+
+## Display Resume
+1. Click down the button named 'Publish Resume' when you finish your resume 
+2. Visit the url {host}:{port}/{uid} in browser, for example `localhost:8080/pwcong`
+
+## Output Resume
+When you visit your public resume you can see a button that can output PDF file of your resume.
+
 # Todos
 - [x] Add/Edit Resume
 - [x] Display Resume

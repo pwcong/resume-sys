@@ -630,7 +630,7 @@ class Home extends React.Component{
 											this.handleChangeListItem('education', index, value);
 										}}
 										namePlaceHolder={translated.schoolName}
-										datePlaceHolder={translated.projectCycle}
+										datePlaceHolder={translated.studyTime}
 										startDate={handleDateTime(item.startDate, '/')}
 										endDate={handleDateTime(item.endDate, '/')}
 										major={item.major}

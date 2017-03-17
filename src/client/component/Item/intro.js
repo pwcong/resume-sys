@@ -108,7 +108,7 @@ class IntroItem extends Component {
 
                         </div>
                         :
-                        <div>
+                        <div style={{marginBottom: '8px'}}>
                             {this.props.intro}
                         </div>
                 }

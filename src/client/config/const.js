@@ -257,6 +257,10 @@ export const string = {
     back: {
         'zh-CN': '返回',
         'en': 'Back'
+    },
+    studyTime: {
+        'zh-CN': '就读时间',
+        'en': 'Study Time'
     }
 
 
@@ -321,6 +325,7 @@ export const translated = {
     publishResumeSuccessfully: string.publishResumeSuccessfully[language],
     publishResumeFailed: string.publishResumeFailed[language],
     exitSys: string.exitSys[language],
-    back: string.back[language]
+    back: string.back[language],
+    studyTime: string.studyTime[language]
     
 }

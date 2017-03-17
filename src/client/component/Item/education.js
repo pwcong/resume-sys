@@ -8,13 +8,13 @@ class EducationItem extends Component {
         super(props);
 
         this.state = {
-            isEditing: this.props.isEditing,
-            name: this.props.name,
-            startDate: this.props.startDate,
-            endDate: this.props.endDate,
-            degree: this.props.degree,
-            major: this.props.major,
-            summary: this.props.summary
+            isEditing: props.isEditing,
+            name: props.name,
+            startDate: props.startDate,
+            endDate: props.endDate,
+            degree: props.degree,
+            major: props.major,
+            summary: props.summary
         };
 
         this.handleCommit = this.handleCommit.bind(this);
@@ -210,7 +210,7 @@ class EducationItem extends Component {
                         </div>
                         :
                         <div>
-                            <div style={{}}>
+                            <div>
                                 <strong style={{fontSize: '24px'}}>
                                     {this.props.name}
                                 </strong>

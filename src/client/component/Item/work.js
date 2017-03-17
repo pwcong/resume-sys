@@ -8,12 +8,12 @@ class WorkItem extends Component {
         super(props);
 
         this.state = {
-            isEditing: this.props.isEditing,
-            name: this.props.name,
-            startDate: this.props.startDate,
-            endDate: this.props.endDate,
-            job: this.props.job,
-            summary: this.props.summary
+            isEditing: props.isEditing,
+            name: props.name,
+            startDate: props.startDate,
+            endDate: props.endDate,
+            job: props.job,
+            summary: props.summary
         };
 
         this.handleCommit = this.handleCommit.bind(this);
@@ -194,7 +194,7 @@ class WorkItem extends Component {
                         </div>
                         :
                         <div>
-                            <div style={{}}>
+                            <div>
                                 <strong style={{fontSize: '24px'}}>
                                     {this.props.name}
                                 </strong>

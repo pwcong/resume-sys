@@ -205,6 +205,22 @@ export const string = {
     city: {
         'zh-CN': '城市',
         'en': 'City'
+    },
+    skillInfo: {
+        'zh-CN': '技能信息',
+        'en': 'Info of Skill'
+    },
+    skillName: {
+        'zh-CN': '技能名称',
+        'en': 'Name of Skill'
+    },
+    skillLevel: {
+        'zh-CN': '技能等级',
+        'en': 'Level of Skill'
+    },
+    personalEvaluation: {
+        'zh-CN': '个人评价',
+        'en': 'Personal Evaluation'
     }
 
 
@@ -256,6 +272,10 @@ export const translated = {
     type: string.type[language],
     salary: string.salary[language],
     jobHope: string.jobHope[language],
-    city: string.city[language]
+    city: string.city[language],
+    skillInfo: string.skillInfo[language],
+    skillLevel: string.skillLevel[language],
+    skillName: string.skillName[language],
+    personalEvaluation: string.personalEvaluation[language]
     
 }

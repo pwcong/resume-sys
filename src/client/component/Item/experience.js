@@ -8,12 +8,12 @@ class ExperienceItem extends Component {
         super(props);
 
         this.state = {
-            isEditing: this.props.isEditing,
-            title: this.props.title,
-            startDate: this.props.startDate,
-            endDate: this.props.endDate,
-            role: this.props.role,
-            summary: this.props.summary
+            isEditing: props.isEditing,
+            title: props.title,
+            startDate: props.startDate,
+            endDate: props.endDate,
+            role: props.role,
+            summary: props.summary
         };
 
         this.handleCommit = this.handleCommit.bind(this);
@@ -194,7 +194,7 @@ class ExperienceItem extends Component {
                         </div>
                         :
                         <div>
-                            <div style={{}}>
+                            <div>
                                 <strong style={{fontSize: '24px'}}>
                                     {this.props.title}
                                 </strong>

@@ -111,6 +111,27 @@
     border-right: 1px #34495e solid;
 
 }
+:local .skill{
+
+    position: relative;
+    border-left: 1px #34495e solid;
+    border-right: 1px #34495e solid;
+
+}
+:local .intro{
+
+    position: relative;
+    border-left: 1px #34495e solid;
+    border-right: 1px #34495e solid;
+
+}
+
+:local .end{
+    padding-top: 48px;
+    border-left: 1px #34495e solid;
+    border-right: 1px #34495e solid;
+    border-bottom: 1px #34495e solid;
+}
 
 :local .label{
     color: white;

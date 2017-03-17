@@ -9,11 +9,11 @@ class HopeItem extends Component {
         super(props);
 
         this.state = {
-            isEditing: this.props.isEditing,
-            job: this.props.job,
-            salary: this.props.salary,
-            type: this.props.type,
-            city: this.props.city
+            isEditing: props.isEditing,
+            job: props.job,
+            salary: props.salary,
+            type: props.type,
+            city: props.city
         };
 
         this.handleCommit = this.handleCommit.bind(this);

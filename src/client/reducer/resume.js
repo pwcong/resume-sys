@@ -41,6 +41,13 @@ export function newEducationItem(){
     });
 }
 
+export function newSkillItem(){
+    return ({
+        name: translated.skillName,
+        level: 1
+    });
+}
+
 export const INITIAL_STATE_RESUME = {
     uid: '',
     info: {

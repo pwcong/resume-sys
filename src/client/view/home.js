@@ -15,6 +15,7 @@ import CheckBox from '../component/CheckBox';
 import ExperienceItem from '../component/Item/experience';
 import WorkItem from '../component/Item/work';
 import EducationItem from '../component/Item/education';
+import HopeItem from '../component/Item/hope';
 
 import { imgUrl, translated } from '../config/const';
 
@@ -53,6 +54,7 @@ class Home extends React.Component{
 		this.handleRemoveListItem = this.handleRemoveListItem.bind(this);
 		this.handleChangeListItem = this.handleChangeListItem.bind(this);
 
+		this.handleChangeHopeDetails = this.handleChangeHopeDetails.bind(this);
 
 	}
 
@@ -78,6 +80,21 @@ class Home extends React.Component{
 			resume: Object.assign({}, ctx.state.resume, {
 				info: Object.assign({}, ctx.state.resume.info, {
 					avatar: ctx.refs.inputAvatar.value
+				})
+			})
+
+		});
+
+	}
+
+	handleChangeHopeDetails(value){
+
+		let ctx = this;
+
+		ctx.setState({
+			resume: Object.assign({}, ctx.state.resume, {
+				hope: Object.assign({}, ctx.state.resume.hope, {
+					details: value
 				})
 			})
 
@@ -204,6 +221,8 @@ class Home extends React.Component{
 
 	render(){
 
+		let resume = this.state.resume;
+
 		return (
 			<div className={style.root}>
 				<Modal hide={this.state.hideModal}>
@@ -244,7 +263,7 @@ class Home extends React.Component{
 						<div>
 							<div
 								style={{
-									backgroundImage: 'url(' + this.state.resume.info.avatar + ')'
+									backgroundImage: 'url(' + resume.info.avatar + ')'
 								}}>
 								<span 
 									className="fa fa-edit"
@@ -267,7 +286,7 @@ class Home extends React.Component{
 							onCommit={value => {
 								this.handleEditInfo('name', value);
 							}}
-							defaultValue={this.state.resume.info.name}
+							defaultValue={resume.info.name}
 							/>
 					</div>
 
@@ -283,7 +302,7 @@ class Home extends React.Component{
 							}}
 							name="radio-sex"
 							icon="fa-transgender"
-							defaultValue={this.state.resume.info.sex}
+							defaultValue={resume.info.sex}
 							handleDefaultValue={ value => handleSexNum(value) }/>
 						<DatePicker
 							onCommit={value => {
@@ -293,7 +312,7 @@ class Home extends React.Component{
 							isDatePicker={true}
 							inputWidth="110px"
 							icon="fa-birthday-cake"
-							defaultValue={this.state.resume.info.birthday}
+							defaultValue={resume.info.birthday}
 							handleDefaultValue={(value) => {
 								let date = new Date(value);
 								return handleDateTime(date, '-')
@@ -306,7 +325,7 @@ class Home extends React.Component{
 							inputWidth="100px"
 							placeholder={translated.record}
 							icon="fa-mortar-board"
-							defaultValue={this.state.resume.info.record}/>
+							defaultValue={resume.info.record}/>
 
 						<Editor
 							onCommit={value => {
@@ -315,7 +334,7 @@ class Home extends React.Component{
 							placeholder={translated.city}
 							inputWidth="100px"
 							icon="fa-map-marker"
-							defaultValue={this.state.resume.info.city}/>
+							defaultValue={resume.info.city}/>
 					</div>
 
 					<div className={style.row}>
@@ -325,14 +344,14 @@ class Home extends React.Component{
 							}}
 							placeholder={translated.phone}
 							icon="fa-phone"
-							defaultValue={this.state.resume.info.phone}/>
+							defaultValue={resume.info.phone}/>
 						<Editor
 							onCommit={value => {
 								this.handleEditInfo('email', value);
 							}}
 							placeholder={translated.email}
 							icon="fa-envelope"
-							defaultValue={this.state.resume.info.email}/>
+							defaultValue={resume.info.email}/>
 
 						<Editor
 							onCommit={value => {
@@ -340,14 +359,14 @@ class Home extends React.Component{
 							}}
 							placeholder={translated.github}
 							icon="fa-github"
-							defaultValue={this.state.resume.info.github}/>
+							defaultValue={resume.info.github}/>
 						<Editor
 							onCommit={value => {
 								this.handleEditInfo('blog', value);
 							}}
 							placeholder={translated.blog}
 							icon="fa-home"
-							defaultValue={this.state.resume.info.blog}/>
+							defaultValue={resume.info.blog}/>
 					</div>
 				</div>
 
@@ -366,7 +385,7 @@ class Home extends React.Component{
 								<CheckBox
 									id="checkbox-experience"
 									name="checkbox-experience"
-									checked={this.state.resume.experience.display} 
+									checked={resume.experience.display} 
 									label=""
 									onChange={value => {
 										this.handleChangeDisplay('experience', value);
@@ -390,7 +409,7 @@ class Home extends React.Component{
 							paddingLeft: '16px',
 						}}>
 						{
-							this.state.resume.experience.list.map((item, index) => 
+							resume.experience.list.map((item, index) => 
 								<ExperienceItem
 									key={'item-experience'+index}
 									index={index}
@@ -429,7 +448,7 @@ class Home extends React.Component{
 								<CheckBox
 									id="checkbox-work"
 									name="checkbox-work"
-									checked={this.state.resume.work.display} 
+									checked={resume.work.display} 
 									label=""
 									onChange={value => {
 										this.handleChangeDisplay('work', value);
@@ -453,7 +472,7 @@ class Home extends React.Component{
 							paddingLeft: '16px',
 						}}>
 						{
-							this.state.resume.work.list.map((item, index) => 
+							resume.work.list.map((item, index) => 
 								<WorkItem
 									key={'item-work'+index}
 									index={index}
@@ -492,7 +511,7 @@ class Home extends React.Component{
 								<CheckBox
 									id="checkbox-education"
 									name="checkbox-education"
-									checked={this.state.resume.education.display} 
+									checked={resume.education.display} 
 									label=""
 									onChange={value => {
 										this.handleChangeDisplay('education', value);
@@ -516,7 +535,7 @@ class Home extends React.Component{
 							paddingLeft: '16px',
 						}}>
 						{
-							this.state.resume.education.list.map((item, index) => 
+							resume.education.list.map((item, index) => 
 								<EducationItem
 									key={'item-education'+index}
 									index={index}
@@ -539,6 +558,51 @@ class Home extends React.Component{
 									summaryPlaceHolder={translated.summary}/>
 							)
 						}
+					</div>
+				</div>
+
+				<div className={style.hope + ' row'}>
+					<div 
+						className={style.row} 
+						style={{
+							marginTop: '48px',
+							borderTop: '1px #34495e solid'
+						}}>
+						<div className={style.label}>
+							{translated.jobHope}
+						</div>
+						<div className={style.tools}>
+							<div>
+								<CheckBox
+									id="checkbox-hope"
+									name="checkbox-hope"
+									checked={resume.hope.display} 
+									label=""
+									onChange={value => {
+										this.handleChangeDisplay('hope', value);
+									}}
+									/>
+							</div>
+						</div>
+					</div>
+					<div 
+						className={style.row}
+						style={{
+							paddingRight: '16px',
+							paddingLeft: '16px',
+						}}>
+
+						<HopeItem
+							onCommit={this.handleChangeHopeDetails}
+							type={resume.hope.details.type}
+							typePlaceHolder={translated.type}
+							salary={resume.hope.details.salary}
+							salaryPlaceHolder={translated.salary}
+							city={resume.hope.details.city}
+							cityPlaceHolder={translated.city}
+							job={resume.hope.details.job}
+							jobPlaceHolder={translated.job}/>
+						
 					</div>
 				</div>
 

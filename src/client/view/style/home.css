@@ -104,6 +104,13 @@
     border-right: 1px #34495e solid;
 
 }
+:local .hope{
+
+    position: relative;
+    border-left: 1px #34495e solid;
+    border-right: 1px #34495e solid;
+
+}
 
 :local .label{
     color: white;

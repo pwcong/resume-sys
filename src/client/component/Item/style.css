@@ -37,3 +37,14 @@
 :local .root:hover .tools span{
     opacity: 1;
 }
+
+:local .display strong{
+    font-size: 18px;
+    margin-right: 16px;
+}
+
+:local .display strong span{
+    margin-right: 8px;
+    width: 24px;
+    text-align: center;
+}

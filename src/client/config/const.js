@@ -189,6 +189,22 @@ export const string = {
     major: {
         'zh-CN': '专业',
         'en': 'Major'
+    },
+    salary: {
+        'zh-CN': '薪资',
+        'en': 'Salary'
+    },
+    type: {
+        'zh-CN': '类型',
+        'en': 'Type'
+    },
+    jobHope: {
+        'zh-CN': '职位期望',
+        'en': 'Hope of Job'
+    },
+    city: {
+        'zh-CN': '城市',
+        'en': 'City'
     }
 
 
@@ -236,6 +252,10 @@ export const translated = {
     schoolName: string.schoolName[language],
     degree: string.degree[language],
     major: string.major[language],
-    educationExperience: string.educationExperience[language]
+    educationExperience: string.educationExperience[language],
+    type: string.type[language],
+    salary: string.salary[language],
+    jobHope: string.jobHope[language],
+    city: string.city[language]
     
 }

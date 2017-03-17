@@ -27,7 +27,7 @@ module.exports = {
             method: 'POST'
         },
         displayResume: {
-            url: '/display/',
+            url: '/:uid',
             method: 'GET'
         }
     }

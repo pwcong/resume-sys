@@ -4,6 +4,7 @@ import serverConfig from '../../../config/server.config';
 const OK = 200;
 
 export const ACTION_RESUME_GET = 'ACTION_RESUME_GET';
+
 export function getResume(resume){
 
     return ({
@@ -63,9 +64,42 @@ export function toModifyResume(token, resume, onStart, onSuccess, onFailed){
         }).then(json => {
 
             if(json.status === OK){
+                onSuccess();
 
-                dispatch(getResume(json.result));
-                onSuccess(json.result);
+            }else{
+                onFailed(json.message);
+            }
+
+        }).catch(err => {
+            onFailed(err.message);
+        });
+
+    }
+
+}
+
+export function toPublishResume(token, uid, onStart, onSuccess, onFailed){
+
+    return dispatch => {
+
+        onStart();
+
+        fetch('http://' + serverConfig.host + ':' + serverConfig.port + serverConfig.api.publishResume.url, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                token,
+                uid
+            }),
+            method: serverConfig.api.publishResume.method
+        }).then(res => {
+            return res.json();
+        }).then(json => {
+
+            if(json.status === OK){
+
+                onSuccess();
 
             }else{
                 onFailed(json.message);

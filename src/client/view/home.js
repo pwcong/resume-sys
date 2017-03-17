@@ -23,7 +23,8 @@ import { imgUrl, translated } from '../config/const';
 
 import {
 	toGetResume,
-	toModifyResume
+	toModifyResume,
+	toPublishResume
 } from '../actions/resume';
 
 import {
@@ -37,6 +38,8 @@ import {
 	newEducationItem,
 	newSkillItem
 } from '../reducer/resume';
+
+let timer = null;
 
 class Home extends React.Component{
 
@@ -202,7 +205,6 @@ class Home extends React.Component{
 	}
 
 	handleSubmitModification(){
-		console.log('Submit');
 
 		let ctx = this;
 
@@ -224,12 +226,25 @@ class Home extends React.Component{
 
 	handlePublishResume(){
 
-		console.log('Publish');
+		let ctx = this;
+
+		if(ctx.props.userstate.token){
+
+			ctx.props.dispatch(toPublishResume(
+				ctx.props.userstate.token,
+				ctx.props.userstate.uid,
+				() => {},
+				() => {
+					showMessage(ctx, translated.publishResumeSuccessfully, TYPE.success, 2000);
+				},
+				err => {
+					showMessage(ctx, translated.publishResumeFailed, TYPE.danger, 2000);
+				}
+			));
+		}	
 	}
 
 	handleRefreshResume(){
-
-		console.log('Refresh');
 
 		let ctx = this;
 
@@ -277,7 +292,7 @@ class Home extends React.Component{
 					showMessage(ctx, translated.getResumeSuccessfully, TYPE.success, 2000);
 					ctx.setState({
 						resume
-					})
+					});
 				},
 				err => {
 					showMessage(ctx, translated.getResumeFailed, TYPE.danger, 2000);
@@ -385,8 +400,8 @@ class Home extends React.Component{
 								icon="fa-birthday-cake"
 								defaultValue={resume.info.birthday}
 								handleDefaultValue={(value) => {
-									let date = new Date(value);
-									return handleDateTime(date, '-')
+									
+									return handleDateTime(value, '-')
 								}}/>
 
 							<Editor
@@ -822,12 +837,16 @@ function handleMonthOrDate(v){
 }
 
 function showMessage(ctx, content, type, time){
+
+	if(timer)
+		clearTimeout(timer);
+
 	ctx.setState({
 		hideMessage: false,
 		messageContent: content,
 		messageType: type
 	});
-	setTimeout(() => {
+	timer = setTimeout(() => {
 		ctx.setState({
 			hideMessage: true
 		});

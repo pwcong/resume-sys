@@ -1,21 +1,41 @@
 # resume-sys
-一个在线简历系统，提供简历展示，编辑，以及pdf导出功能。
+A powerful Resume System, easily dispaly and edit and export pdf for resume.
 
-# 项目架构
-前端（webpack构建打包）：
+![01](https://raw.githubusercontent.com/pwcong/SnapShot/master/resume-sys/01.png)
+![01](https://raw.githubusercontent.com/pwcong/SnapShot/master/resume-sys/02.png)
+![01](https://raw.githubusercontent.com/pwcong/SnapShot/master/resume-sys/03.png)
+![01](https://raw.githubusercontent.com/pwcong/SnapShot/master/resume-sys/04.png)
+
+
+# Install
+
+```
+// install all dependence
+
+npm install
+
+// configurate config/server.config.js
+// make sure you have run the database mongodb and redis
+
+npm run start
+```
+
+# Framework
+
+Front-End (webpack)
 * React
 * Redux
 * React-Router
 * Flat-UI
 
-后端：
+Back-End
 * Koa2
 
-数据库：
+Database
 * MongoDB
 * Redis
 
 # Todos
-- [x] 添加/编辑 简历
-- [x] 展示简历
-- [x] 简历导出为PDF
+- [x] Add/Edit Resume
+- [x] Display Resume
+- [x] Output PDF File

@@ -23,7 +23,7 @@ export function render2Html(uid, render){
     </head>
     <body>
 
-        <div id="app" class="container">${render}</div>
+        <div id="app" class="container" style="background-color: white">${render}</div>
 
         <div style="position: fixed; right: 16px; bottom: 16px">
             <button id="btn-output-pdf" type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="导出PDF">

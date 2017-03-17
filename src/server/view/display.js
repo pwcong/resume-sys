@@ -52,7 +52,7 @@ class Display extends React.Component{
 		let resume = this.props.resume;
 
 		return (
-			<div style={{width: '100%'}}>
+			<div style={{width: '100%', backgroundColor: 'white'}}>
 
 				<div>
 				

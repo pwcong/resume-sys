@@ -28,6 +28,8 @@ var _display = require('../view/display');
 
 var _display2 = _interopRequireDefault(_display);
 
+var _view = require('../view');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var OK = _status2.default.OK,
@@ -119,7 +121,7 @@ exports.default = {
 
                         var render = _server2.default.renderToString(_react2.default.createElement(_display2.default, { resume: res.result }));
 
-                        _fsExtra2.default.outputFileSync('public/publish/' + uid + '.html', renderHtml(uid, render));
+                        _fsExtra2.default.outputFileSync('public/publish/' + uid + '.html', (0, _view.render2Html)(uid, render));
 
                         ctx.body = {
                                 status: OK,
@@ -133,9 +135,3 @@ exports.default = {
                 }
         }
 };
-
-
-function renderHtml(uid, render) {
-
-        return '<!DOCTYPE html>\n<html>\n    <head>\n        <meta charset="utf-8">\n        <title>' + uid + '</title>\n        <meta name="viewport" content="width=device-width, initial-scale=1.0">\n        <link rel="stylesheet" href="/css/font-awesome.min.css">\n        <!-- Loading Bootstrap -->\n        <link href="/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">\n\n        <!-- Loading Flat UI -->\n        <link href="/css/flat-ui.min.css" rel="stylesheet">\n\n        <link rel="shortcut icon" href="img/favicon.ico">\n\n        <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->\n        <!--[if lt IE 9]>\n        <script src="js/vendor/html5shiv.js"></script>\n        <script src="js/vendor/respond.min.js"></script>\n        <![endif]-->\n    </head>\n    <body>\n\n        <div id="app" class="container">' + render + '</div>\n\n        <!-- jQuery (necessary for Flat UI\'s JavaScript plugins) -->\n        <script src="/js/vendor/jquery.min.js"></script>\n        <!-- Include all compiled plugins (below), or include individual files as needed -->\n        <script src="/js/vendor/video.js"></script>\n        <script src="/js/flat-ui.min.js"></script>\n\n    </body>\n</html>';
-}

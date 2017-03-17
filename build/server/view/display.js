@@ -76,7 +76,7 @@ var Display = function (_React$Component) {
 
             return _react2.default.createElement(
                 'div',
-                { style: { width: '100%' } },
+                { style: { width: '100%', backgroundColor: 'white' } },
                 _react2.default.createElement(
                     'div',
                     null,

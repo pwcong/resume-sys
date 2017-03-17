@@ -1,7 +1,17 @@
-import serverConfig from '../../../config/server.config';
 import 'whatwg-fetch';
+import serverConfig from '../../../config/server.config';
 
 const OK = 200;
+
+const loginUrl = process.env.NODE_ENV === 'production' ?
+    serverConfig.api.login.url 
+    : 
+    'http://' + serverConfig.host + ':' + serverConfig.port + serverConfig.api.login.url;
+
+const registerUrl = process.env.NODE_ENV === 'production' ?
+    serverConfig.api.register.url
+    :
+    'http://' + serverConfig.host + ':' + serverConfig.port + serverConfig.api.register.url;
 
 export const ACTION_USERSTATE_LOGIN = 'ACTION_USERSTATE_LOGIN';
 export function login(token, uid){
@@ -27,7 +37,7 @@ export function toLogin(user, onStart, onSuccess, onFailed){
 
         onStart();
 
-        fetch('http://' + serverConfig.host + ':' + serverConfig.port + serverConfig.api.login.url, {
+        fetch(loginUrl, {
             method: serverConfig.api.login.method,
             headers: {
                 'Content-Type': 'application/json'
@@ -61,7 +71,7 @@ export function toRegister(user, onStart, onSuccess, onFailed){
 
         onStart();
 
-        fetch('http://' + serverConfig.host + ':' + serverConfig.port + serverConfig.api.register.url, {
+        fetch(registerUrl, {
 
             method: serverConfig.api.register.method,
             headers: {

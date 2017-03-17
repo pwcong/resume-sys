@@ -3,6 +3,21 @@ import serverConfig from '../../../config/server.config';
 
 const OK = 200;
 
+const getResumeUrl = process.env.NODE_ENV === 'production' ?
+    serverConfig.api.getResume.path
+    :
+    'http://' + serverConfig.host + ':' + serverConfig.port + serverConfig.api.getResume.path;
+
+const modifyResumeUrl = process.env.NODE_ENV === 'production' ?
+    serverConfig.api.modifyResume.url
+    :
+    'http://' + serverConfig.host + ':' + serverConfig.port + serverConfig.api.modifyResume.url;
+
+const publishResumeUrl = process.env.NODE_ENV === 'production' ?
+    serverConfig.api.publishResume.url
+    :
+    'http://' + serverConfig.host + ':' + serverConfig.port + serverConfig.api.publishResume.url;
+
 export const ACTION_RESUME_GET = 'ACTION_RESUME_GET';
 
 export function getResume(resume){
@@ -22,7 +37,7 @@ export function toGetResume(uid, onStart, onSuccess, onFailed){
 
         onStart();
 
-        fetch('http://' + serverConfig.host + ':' + serverConfig.port + serverConfig.api.getResume.path + uid)
+        fetch(getResumeUrl + uid)
         .then(res => {
             return res.json();
         }).then(json => {
@@ -50,7 +65,7 @@ export function toModifyResume(token, resume, onStart, onSuccess, onFailed){
 
         onStart();
 
-        fetch('http://' + serverConfig.host + ':' + serverConfig.port + serverConfig.api.modifyResume.url, {
+        fetch(modifyResumeUrl, {
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -84,7 +99,7 @@ export function toPublishResume(token, uid, onStart, onSuccess, onFailed){
 
         onStart();
 
-        fetch('http://' + serverConfig.host + ':' + serverConfig.port + serverConfig.api.publishResume.url, {
+        fetch(publishResumeUrl, {
             headers: {
                 'Content-Type': 'application/json'
             },

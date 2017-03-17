@@ -221,6 +221,42 @@ export const string = {
     personalEvaluation: {
         'zh-CN': '个人评价',
         'en': 'Personal Evaluation'
+    },
+    submitModification: {
+        'zh-CN': '提交修改',
+        'en': 'Submit Modification'
+    },
+    publishResume: {
+        'zh-CN': '发布简历',
+        'en': 'Publish Resume'
+    },
+    refreshResume: {
+        'zh-CN': '刷新简历',
+        'en': 'Refresh Resume'
+    },
+    modifyResumeSuccessfully: {
+        'zh-CN': '简历信息修改成功',
+        'en': 'Modify Resume Successfully'
+    },
+    modifyResumeFailed: {
+        'zh-CN': '简历信息修改失败',
+        'en': 'Modify Resume Failed'
+    },
+    publishResumeSuccessfully: {
+        'zh-CN': '简历发布成功',
+        'en': 'Publish Resume Successfully'
+    },
+    publishResumeFailed: {
+        'zh-CN': '简历发布失败',
+        'en': 'Publish Resume Failed'
+    },
+    exitSys: {
+        'zh-CN': '退出系统',
+        'en': 'Exit System'
+    },
+    back: {
+        'zh-CN': '返回',
+        'en': 'Back'
     }
 
 
@@ -276,6 +312,15 @@ export const translated = {
     skillInfo: string.skillInfo[language],
     skillLevel: string.skillLevel[language],
     skillName: string.skillName[language],
-    personalEvaluation: string.personalEvaluation[language]
+    personalEvaluation: string.personalEvaluation[language],
+    submitModification: string.submitModification[language],
+    publishResume: string.publishResume[language],
+    refreshResume: string.refreshResume[language],
+    modifyResumeSuccessfully: string.modifyResumeSuccessfully[language],
+    modifyResumeFailed: string.modifyResumeFailed[language],
+    publishResumeSuccessfully: string.publishResumeSuccessfully[language],
+    publishResumeFailed: string.publishResumeFailed[language],
+    exitSys: string.exitSys[language],
+    back: string.back[language]
     
 }

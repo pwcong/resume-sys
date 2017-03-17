@@ -75,7 +75,7 @@ class LoginForm extends Component {
                     </div>
                     <button 
                         type="button" 
-                        className={"btn btn-block btn-large btn-info " 
+                        className={"btn btn-block btn-large btn-primary " 
                             + (this.props.loading ? "disabled" : '')
                         }
                         onClick={this.handleLogin}
@@ -84,7 +84,7 @@ class LoginForm extends Component {
                     </button>
                     <button 
                         type="button" 
-                        className="btn btn-block btn-large"
+                        className="btn btn-block btn-large btn-inverse"
                         onClick={this.handleToRegister}
                         >
                         {translated.register}

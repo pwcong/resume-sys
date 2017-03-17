@@ -75,7 +75,7 @@ class RegisterForm extends Component {
                     </div>
                     <button 
                         type="button" 
-                        className={"btn btn-block btn-large btn-primary " 
+                        className={"btn btn-block btn-large btn-info " 
                             + (this.props.loading ? 'disabled' : '')
                         }
                         onClick={this.handleRegister}
@@ -84,10 +84,10 @@ class RegisterForm extends Component {
                     </button>
                     <button 
                         type="button" 
-                        className="btn btn-block btn-large btn-info"
+                        className="btn btn-block btn-large"
                         onClick={this.handleToLogin}
                         >
-                        {translated.login}
+                        {translated.back}
                     </button>
                 </form>
             </div>

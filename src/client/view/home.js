@@ -22,8 +22,13 @@ import IntroItem from '../component/Item/intro';
 import { imgUrl, translated } from '../config/const';
 
 import {
-	toGetResume
+	toGetResume,
+	toModifyResume
 } from '../actions/resume';
+
+import {
+	logout
+} from '../actions/userstate';
 
 import {
 	INITIAL_STATE_RESUME,
@@ -59,6 +64,11 @@ class Home extends React.Component{
 
 		this.handleChangeHopeDetails = this.handleChangeHopeDetails.bind(this);
 
+
+		this.handleSubmitModification = this.handleSubmitModification.bind(this);
+		this.handlePublishResume = this.handlePublishResume.bind(this);
+		this.handleRefreshResume = this.handleRefreshResume.bind(this);
+		this.handleExitSystem = this.handleExitSystem.bind(this);
 	}
 
 
@@ -189,6 +199,61 @@ class Home extends React.Component{
 			})
 
 		});		
+	}
+
+	handleSubmitModification(){
+		console.log('Submit');
+
+		let ctx = this;
+
+		if(ctx.props.userstate.token){
+
+			ctx.props.dispatch(toModifyResume(
+				ctx.props.userstate.token,
+				ctx.state.resume,
+				() => {},
+				succ => {
+					showMessage(ctx, translated.modifyResumeSuccessfully, TYPE.success, 2000);
+				},
+				err => {
+					showMessage(ctx, translated.modifyResumeFailed, TYPE.danger, 2000);
+				}
+			));
+		}	
+	}
+
+	handlePublishResume(){
+
+		console.log('Publish');
+	}
+
+	handleRefreshResume(){
+
+		console.log('Refresh');
+
+		let ctx = this;
+
+		if(ctx.props.userstate.uid){
+
+			ctx.props.dispatch(toGetResume(
+				ctx.props.userstate.uid,
+				() => {},
+				resume => {
+					showMessage(ctx, translated.getResumeSuccessfully, TYPE.success, 2000);
+					ctx.setState({
+						resume
+					})
+				},
+				err => {
+					showMessage(ctx, translated.getResumeFailed, TYPE.danger, 2000);
+				}
+			));
+		}
+	}
+
+	handleExitSystem(){
+		this.props.dispatch(logout());
+		hashHistory.push('/');
 	}
 
 
@@ -700,6 +765,28 @@ class Home extends React.Component{
 					<div className={style.end + ' row'} ></div>
 				</div>
 
+				<div className={style.controller}>
+					<button 
+						className="btn btn-embossed"
+						onClick={this.handleRefreshResume}>
+						{translated.refreshResume}
+					</button>
+					<button 
+						className="btn btn-embossed btn-primary"
+						onClick={this.handleSubmitModification}>
+						{translated.submitModification}
+					</button>
+					<button 
+						className="btn btn-embossed btn-warning"
+						onClick={this.handlePublishResume}>
+						{translated.publishResume}
+					</button>
+					<button 
+						onClick={this.handleExitSystem}
+						className="btn btn-embossed btn-danger">
+						{translated.exitSys}
+					</button>
+				</div>
 				
 			</div>
 		)

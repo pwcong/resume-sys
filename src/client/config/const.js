@@ -261,6 +261,14 @@ export const string = {
     studyTime: {
         'zh-CN': '就读时间',
         'en': 'Study Time'
+    },
+    publishResumeTips: {
+        'zh-CN': '你的简历访问地址如下',
+        'en': 'Here is your Resume Url'
+    },
+    know: {
+        'zh-CN': '知道了',
+        'en': 'OK'
     }
 
 
@@ -326,6 +334,8 @@ export const translated = {
     publishResumeFailed: string.publishResumeFailed[language],
     exitSys: string.exitSys[language],
     back: string.back[language],
-    studyTime: string.studyTime[language]
+    studyTime: string.studyTime[language],
+    publishResumeTips: string.publishResumeTips[language],
+    know: string.know[language]
     
 }

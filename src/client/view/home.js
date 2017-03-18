@@ -47,6 +47,7 @@ class Home extends React.Component{
 		super(props);
 
 		this.state = {
+			hideResumeTipsModal: true,
 			hideModal: true,
 			hideMessage: true,
 			messageContent: '',
@@ -72,6 +73,8 @@ class Home extends React.Component{
 		this.handlePublishResume = this.handlePublishResume.bind(this);
 		this.handleRefreshResume = this.handleRefreshResume.bind(this);
 		this.handleExitSystem = this.handleExitSystem.bind(this);
+
+		this.handleHideResumeTipsModal = this.handleHideResumeTipsModal.bind(this);
 	}
 
 
@@ -84,6 +87,12 @@ class Home extends React.Component{
 	handleHideEditAvatarModal(){
 		this.setState({
 			hideModal: true
+		});
+	}
+
+	handleHideResumeTipsModal(){
+		this.setState({
+			hideResumeTipsModal: true
 		});
 	}
 
@@ -236,6 +245,9 @@ class Home extends React.Component{
 				() => {},
 				() => {
 					showMessage(ctx, translated.publishResumeSuccessfully, TYPE.success, 2000);
+					ctx.setState({
+						hideResumeTipsModal: false
+					});
 				},
 				err => {
 					showMessage(ctx, translated.publishResumeFailed, TYPE.danger, 2000);
@@ -308,6 +320,28 @@ class Home extends React.Component{
 
 		return (
 			<div className={style.root}>
+
+				<Modal hide={this.state.hideResumeTipsModal}>
+					<form className={style['modal-edit-avatar']}>
+						<div className="form-group">
+							<p>{translated.publishResumeTips}</p>
+							<p>
+								<strong>
+									<a href={'/' + this.props.userstate.uid} target="_blank">{location.host + '/' + this.props.userstate.uid}</a>
+								</strong>
+							</p>
+						</div>
+						<button 
+							type="button" 
+							className="btn btn-block btn-large btn-primary"
+							onClick={this.handleHideResumeTipsModal}
+							>
+							{translated.know}
+						</button>
+					</form>					
+				</Modal>
+
+
 				<Modal hide={this.state.hideModal}>
 					<form className={style['modal-edit-avatar']}>
 						<div className="form-group">

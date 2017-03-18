@@ -1,7 +1,7 @@
 function checkBrowser() {
-    var userAgent = window.navigator.userAgent; //取得浏览器的userAgent字符串
+    let userAgent = window.navigator.userAgent; //取得浏览器的userAgent字符串
 
-    var isOpera = userAgent.indexOf("Opera") > -1;
+    let isOpera = userAgent.indexOf("Opera") > -1;
     if (isOpera) {
         return "Opera"
     } //判断是否Opera浏览器
@@ -17,8 +17,28 @@ function checkBrowser() {
     if (userAgent.indexOf("Safari") > -1) {
         return "Safari";
     } //判断是否Safari浏览器
+    else{
+        return "IE";
+    }
+
+}
+
+function checkLanguage(){
+
+    let language = navigator.language;
+
+    switch(language){
+
+        case 'zh-CN':
+            return 'zh-CN';
+        case 'en':
+            return 'en';
+        default:
+            return 'zh-CN';
+
+    }
 
 }
 
 export const browser = checkBrowser();
-export const language = navigator.language || 'en';
+export const language = checkLanguage();

@@ -38,6 +38,8 @@ export function render2Html(uid, render){
         <script src="/js/flat-ui.min.js"></script>
         <script src="/js/jspdf.debug.js"></script>
         <script src="/js/html2canvas.js"></script>
+        <script src="/js/renderPDF.js"></script>
+
 
         <script>
             $(function () {
@@ -46,32 +48,10 @@ export function render2Html(uid, render){
 
                 $('#btn-output-pdf').click(function(){
 
-                    html2canvas(document.getElementById("app"), {
-                        onrendered: function(canvas) {
+                    renderPDF(document.getElementById("app"), document.title, "a4", function(){
 
-                            var imgData = canvas.toDataURL('image/jpeg');
+                        
 
-                            var doc = new jsPDF("p", "mm", "a4");
-                            //                               |
-                            // |—————————————————————————————|                     
-                            // A0 841×1189                           
-                            // A1 594×841                            
-                            // A2 420×594                            
-                            // A3 297×420                            
-                            // A4 210×297                            
-                            // A5 148×210                            
-                            // A6 105×148                            
-                            // A7 74×105                             
-                            // A8 52×74                              
-                            // A9 37×52                              
-                            // A10 26×37             
-                            //     |——|———————————————————————————|
-                            //                                 |——|——|
-                            //                                 |     |      
-                            doc.addImage(imgData, 'JPEG', 0, 0,210,297);
-
-                            doc.save(document.title + '.pdf');
-                        }
                     });
 
                 });

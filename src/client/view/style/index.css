@@ -11,4 +11,6 @@
 
     background-repeat: no-repeat;
     background-size: cover;
+    background-position-x: 50%;
+    background-position-y: 0;
 }
